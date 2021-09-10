@@ -1,0 +1,14 @@
+{
+  "name": "fashions",
+  "version": "1.0.0",
+  "description": "MERN fashion shop app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "author": "Rizukyy",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
