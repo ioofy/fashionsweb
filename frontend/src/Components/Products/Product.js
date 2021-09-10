@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -117,15 +117,21 @@ const ButtonCart = styled.button`
 
 const Product = ( { product } ) => {
 
-    const OnClicked = () => {
-        console.log('Its work');
+    const toTop = () => {
+        window.scrollTo(0,0);
     }
+
+    useEffect(() =>{
+        toTop();
+        window.addEventListener("click", toTop);
+
+    },[])
     
     return (
         <ProductInfo>
             <Container>
                 <Wrapper>
-                    <Link to={`/products/item/${product._id}`}><Image src={product.img} /></Link>
+                    <Link to={`/products/item/${product._id}`} onClick={toTop} ><Image src={product.img} /></Link>
                     <Info>
                         <TextInfo>
                             {product.title}
@@ -136,7 +142,7 @@ const Product = ( { product } ) => {
                         <PriceInfo>
                             IDR {product.price}
                         </PriceInfo>
-                            <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={OnClicked}> 
+                            <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}}> 
                                 <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
                                 ADD TO CART
                             </ButtonCart>

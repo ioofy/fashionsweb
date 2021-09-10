@@ -7,6 +7,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Footer from "../Footer/Footer";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import axios from "axios";
+import NewsLetter from "../../NewsLetter";
 
 const Container = styled.div`
   display: flex;
@@ -289,6 +290,7 @@ const ProductPage = ({ match }) => {
           </InfoContainer>
         </Wrapper>
       </Container>
+      <NewsLetter/>
       <Footer />
     </>
   );
