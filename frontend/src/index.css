@@ -20,7 +20,7 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 
 body{
-  font-family: 'Favfont';
+  font-family: 'Favfont' !important;
   background-color: #F9F2EE !important;
 }
 

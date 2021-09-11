@@ -1,7 +1,10 @@
-import React, { useState, useEffect }from 'react'
+import React, { useEffect }from 'react'
 import styled from '@emotion/styled'
 import Product from './Product'
-import axios from 'axios'
+import Message from '../Stuff/Message'
+import Loader from '../Stuff/Loader'
+import { useDispatch, useSelector } from 'react-redux'
+import { listProducts } from '../../actions/productActions'
 
 const ContainerProd = styled.div
 `
@@ -19,19 +22,21 @@ const ContainerProd = styled.div
 
 const Products = () => {
 
-    const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
+
+    const productList = useSelector(state => state.productList)
+    const { loading, error, products } = productList
 
     useEffect(() =>{
-        const fetchProducts = async () => {
-            const { data } = await axios.get('/api/products')
-            
-            setProducts(data)
-        }
 
-        fetchProducts()
-    }, [])
+        dispatch(listProducts())
+
+    }, [dispatch])
+
     
     return (
+    <>
+        { loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : 
         
         <ContainerProd>
             {products.map(product => (
@@ -39,7 +44,9 @@ const Products = () => {
                 <Product product={product} key={product._id} />
 
             ))}
-        </ContainerProd>
+        </ContainerProd> }
+
+    </>
     )
 }
 

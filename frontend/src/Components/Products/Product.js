@@ -142,10 +142,10 @@ const Product = ( { product } ) => {
         <ProductInfo>
             <Container>
                 <Wrapper>
-                 <Image src={product.img} />
+                 <Image src={product.image} />
                     <Info>
                         <TextInfo>
-                            {product.title}
+                            {product.name}
                         </TextInfo>
                         <RatingInfo>
                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px' /> 

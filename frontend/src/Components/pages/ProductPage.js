@@ -74,7 +74,21 @@ const Image = styled.img`
 
 
   @media screen and (max-width: 1024px){
+    height: 35vh;
+  }
+
+  @media screen and (max-width: 414px){
     height: 40vh;
+    max-width: 145%;
+  }
+
+  @media screen and (max-width: 375px){
+    height: 47vh;
+    max-width: 140%;
+  }
+
+  @media screen and (max-width: 280px){
+    height: 35vh;
   }
 
 
@@ -226,10 +240,10 @@ const ProductPage = ({ match }) => {
         </Link>
         <Wrapper>
           <ImgContainer>
-            <Image src={product.img} />
+            <Image src={product.image} />
           </ImgContainer>
           <InfoContainer>
-            <Title>{product.title}</Title>
+            <Title>{product.name}</Title>
             <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
             <Price>IDR {product.price}</Price>
             <Description>{product.description}</Description>
