@@ -1,12 +1,32 @@
-import React, { useEffect } from 'react'
-import styled from '@emotion/styled'
+import React from 'react'
+import styled from '@emotion/styled/macro'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import Rating from '../../Rating';
 
 const ProductInfo = styled.div`
 
+`
+
+const Image = styled.img`
+    max-width: 100%;
+    border-radius: 20px;
+    background-color: #C5DCDD;
+`
+
+
+const InfoHover = styled.div`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
 `
 
 const Container = styled.div`
@@ -40,11 +60,18 @@ const Container = styled.div`
         width: 235px !important;
     }
 
+    &:hover ${Image}{
+        -webkit-filter: brightness(60%);
+    }
+
+    &:hover ${InfoHover}{
+        opacity: 1;
+    }
+
 
 `
 
 const Wrapper = styled.div`
-    margin-bottom: 50px;
     margin-top: 80px;
 `
 
@@ -55,10 +82,19 @@ const Info = styled.div`
     margin-top: -7px;
 `
 
-const Image = styled.img`
-    max-width: 100%;
-    border-radius: 20px;
-    background-color: #C5DCDD;
+const IconHover = styled.div`
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        transform: scale(1.1);
+        transition: 0.3s ease;
+    }
 `
 
 const Icon = styled.div`
@@ -66,7 +102,6 @@ const Icon = styled.div`
     text-decoration: none;
     color: #FF3D68;
     margin-right: 1px;
-    cursor: pointer;
     margin-top: 20px;
     
 `
@@ -97,41 +132,17 @@ const PriceInfo = styled.h1`
     margin-top: 90px;
 `
 
-const ButtonCart = styled.button`
-    font-size: 1rem;
-    position: absolute;
-    left: 0;
-    margin-left: 1px;
-    margin-top: 170px;
-    padding: 8px;
-    width: 10rem;
-    height: 2.5rem;
-    display: flex;
-    font-family: 'JetBrains Mono', monospace;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    background-color: orange;
-`
-
-
 const Product = ( { product } ) => {
 
     const toTop = () => {
         window.scrollTo(0,0);
     }
-
-    useEffect(() =>{
-        toTop();
-        window.addEventListener("click", toTop);
-
-    },[])
     
     return (
         <ProductInfo>
             <Container>
                 <Wrapper>
-                    <Link to={`/products/item/${product._id}`} onClick={toTop} ><Image src={product.img} /></Link>
+                 <Image src={product.img} />
                     <Info>
                         <TextInfo>
                             {product.title}
@@ -142,14 +153,15 @@ const Product = ( { product } ) => {
                         <PriceInfo>
                             IDR {product.price}
                         </PriceInfo>
-                            <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}}> 
-                                <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
-                                ADD TO CART
-                            </ButtonCart>
                         <Icon>
                             <FavoriteBorderOutlinedIcon/>
                         </Icon>
                     </Info>
+                    <InfoHover>
+                        <IconHover>
+                        <Link to={`/products/item/${product._id}`} onClick={toTop} ><SearchIcon style={{fontSize: '25px', marginTop:'5px', color: '#FF6B6B'}}/></Link>
+                        </IconHover>
+                    </InfoHover>
                 </Wrapper>
             </Container>
         </ProductInfo>

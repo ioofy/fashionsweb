@@ -12,7 +12,7 @@ const Container = styled.div`
     margin: 0px auto;
     flex-direction: column;
 
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 1280px){
         max-width: 935px;
     }
 

@@ -19,7 +19,7 @@ const Container = styled.div`
     max-width: 935px !important;
   }
 
-  @media (max-width: 834px) {
+  @media (max-width: 884px) {
     max-width: 700px !important;
   }
 
@@ -73,30 +73,16 @@ const Image = styled.img`
   background-color: #C5DCDD;
 
 
-    @media screen and (max-width: 1024px){
-        height: 30vh
-    }
+  @media screen and (max-width: 1024px){
+    height: 40vh;
+  }
 
-    @media screen and (max-width: 600px){
-        max-width: 120% !important;
-        height: 45vh !important;
-    }
-
-    @media screen and (max-width: 375px){
-        max-width: 124% !important;
-        height: 40vh !important;
-    }
-
-    @media screen and (max-width: 280px){
-        max-width: 140% !important;
-        height: 35vh !important;
-    }
 
 
 `;
 
 const InfoContainer = styled.div`
-  flex: 1;
+  flex: 0.9;
 
   @media screen and (max-width: 600px){
 
@@ -109,7 +95,7 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
-  width: 80%;
+  width: 100%;
   font-size: 1.1rem;
   text-align: justify;
   margin: 20px 0px;
