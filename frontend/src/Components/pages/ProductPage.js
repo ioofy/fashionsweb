@@ -1,13 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
-import Rating from '../../Rating'
+import Rating from '../Stuff/Rating'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Footer from "../Footer/Footer";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import axios from "axios";
-import NewsLetter from "../../NewsLetter";
+import NewsLetter from "../Stuff/NewsLetter";
+import { useDispatch, useSelector } from "react-redux";
+import { listProductsDetails } from "../../actions/productActions";
+import Loader from "../Stuff/Loader";
+import Message from "../Stuff/Message";
+import { Form } from "react-bootstrap";
 
 const Container = styled.div`
   display: flex;
@@ -74,7 +78,11 @@ const Image = styled.img`
 
 
   @media screen and (max-width: 1024px){
-    height: 35vh;
+    height: 34vh;
+  }
+
+  @media screen and (max-width: 540px){
+    height: 45vh;
   }
 
   @media screen and (max-width: 414px){
@@ -83,15 +91,13 @@ const Image = styled.img`
   }
 
   @media screen and (max-width: 375px){
-    height: 47vh;
-    max-width: 140%;
+    max-width: 125%;
   }
 
   @media screen and (max-width: 280px){
-    height: 35vh;
+    height: 34vh;
+    max-width: 155%;
   }
-
-
 
 `;
 
@@ -106,11 +112,12 @@ const InfoContainer = styled.div`
 
 const Title = styled.h1`
   margin: 50px 0px 0px;
+  font-weight: bold;
 `;
 
 const Description = styled.p`
-  width: 100%;
-  font-size: 1.1rem;
+  width: 95%;
+  font-size: 1.2rem;
   text-align: justify;
   margin: 20px 0px;
 
@@ -123,6 +130,7 @@ const Description = styled.p`
 
 const Price = styled.span`
   font-weight: bold;
+  color: #111;
   font-size: 1.2rem;
   font-family: "JetBrains Mono";
 `;
@@ -135,7 +143,7 @@ const FilterContainer = styled.div`
 
 const Filter = styled.div`
   display: flex;
-  margin-top: 15px;
+  margin-top: 20px;
 `
 
 const FilterSizes = styled.div`
@@ -143,44 +151,43 @@ const FilterSizes = styled.div`
 `
 
 const FilterTitle = styled.span`
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: bold;
   margin: 1px;
-`
-
-const FilterMenu = styled.select`
-  margin-left: 10px;
-  margin-top: -2px;
-  padding: 5px;
-  outline: none;
-  border: none;
-  background-color: ${props => props.color};
 `
 
 const FilterSize = styled.select`
     margin-left: 10px;
     margin-top: -2px;
+    font-family: "JetBrains Mono";
     padding: 5px;
+    width: 3.8rem;
+    cursor: pointer;
     outline: none;
     border: none;
     background-color: ${props => props.color};
 `
 
 const FilterOption = styled.option`
-
+  text-align: center;
 `
 
-const FilterColor = styled.div`
+const FilterColor = styled.option`
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background-color: ${props => props.color};
-  margin: 0px 5px;
+  margin: 2px 6px;
   cursor: pointer;
+
+  @media screen and (max-width: 280px){
+    margin: 1px 6px;
+  }
 
 `
 
 const AddContainer = styled.div`
+    display: flex;
     margin-top: 15px;
 `
 
@@ -191,11 +198,12 @@ const Status = styled.div`
 `
 
 const ButtonCart = styled.button`
-  margin-top: 30px;
   padding: 8px;
   width: 10rem;
   height: 2.5rem;
+  position: absolute;
   display: flex;
+  text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
   align-items: center;
   justify-content: center;
@@ -205,25 +213,35 @@ const ButtonCart = styled.button`
 
 // THIS GONNA BE PRODUCT PAGE
 
-const ProductPage = ({ match }) => {
+const ProductPage = ({ history, match }) => {
 
-  const [product, setProduct] = useState({})
+  const [sizeS, setSizes] = useState(37);
+  const [size, setSize] = useState('S');
+  const [qty, setQty] = useState(1);
+  const [color, setColor] = useState();
+
+  const dispatch = useDispatch();
+
+  const productDetails = useSelector(state => state.productDetails);
+
+  const { loading, error, product } = productDetails
 
   useEffect(() => {
-    const fetchProduct = async () => {
 
-        const { data } = await axios.get(`/api/products/${match.params.id}`)
-        
-        setProduct(data)
-    }
+    dispatch(listProductsDetails(match.params.id))
 
-    fetchProduct()
+  }, [dispatch, match])
 
-}, [ match ])
+  const addToCart = ( ) => {
+
+     history.push(`/cart/${match.params.id}?qty=${qty}?sizes=${size}`);
+  }
+
 
   return (
     <>
       <Navbar />
+      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
       <Container>
         <Link to="/products" style={{ cursor: "auto" }}>
           <ButtonBack>
@@ -238,58 +256,72 @@ const ProductPage = ({ match }) => {
             GO BACK
           </ButtonBack>
         </Link>
-        <Wrapper>
-          <ImgContainer>
-            <Image src={product.image} />
-          </ImgContainer>
-          <InfoContainer>
-            <Title>{product.name}</Title>
-            <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
-            <Price>IDR {product.price}</Price>
-            <Description>{product.description}</Description>
-            <Status> Avaliable : {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Status>
-            <Status style={{marginTop: '15px'}}>Brand : {product.brand}</Status>
-            <AddContainer>
-                <FilterTitle>Qty: </FilterTitle>
-                    <FilterMenu color="#B2B1B9" >
-                        <FilterOption>1</FilterOption>
-                        <FilterOption>2</FilterOption>
-                        <FilterOption>3</FilterOption>
-                        <FilterOption>4</FilterOption>
-                        <FilterOption>5</FilterOption>
-                        <FilterOption>6</FilterOption>
-                        <FilterOption>7</FilterOption>
-                        <FilterOption>8</FilterOption>
-                        <FilterOption>9</FilterOption>
-                        <FilterOption>10</FilterOption>
-                    </FilterMenu>
-            </AddContainer>
-            <FilterContainer>
-                <FilterSizes>
-                    <FilterTitle>Size:</FilterTitle>
-                    <FilterSize color="#C5DCDD" >
-                        <FilterOption>XS</FilterOption>
-                        <FilterOption>S</FilterOption>
-                        <FilterOption>M</FilterOption>
-                        <FilterOption>L</FilterOption>
-                        <FilterOption>XL</FilterOption>
-                    </FilterSize>
-                </FilterSizes>
-                <Filter>
-                    <FilterTitle>Color</FilterTitle>
-                    <FilterColor color="black"/>
-                    <FilterColor color="gray"/>
-                    <FilterColor color="#F7D59C"/>
-                </Filter>
+            <Wrapper>
+                  <ImgContainer>
+                    <Image src={product.image} />
+                  </ImgContainer>
+                  <InfoContainer>
+                    <Title>{product.name}</Title>
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
+                    <Price>IDR {product.price}</Price>
+                    <Description>{product.description}</Description>
+                    <Status> Avaliable : {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Status>
+                    <Status style={{marginTop: '15px'}}>Brand : {product.brand}</Status>
+                    {product.countInStock > 0 && (
+                      <AddContainer>
+                          <FilterTitle>Qty : </FilterTitle>
+                              <Form as='select' value={qty} onChange={(e) => setQty(e.target.value)} style={{width: '3.8rem', marginLeft: '14px', textAlign: 'center', border: 'none', background: '#9D9D9D', cursor: 'pointer'}}>
+                                {
+                                  [...Array(product.countInStock).keys()].map((x) => (
+                                    <option key={x + 1} value={x + 1}> {x + 1}</option>
+                                  ))
+                                }
+                              </Form>
+                      </AddContainer>
+                    )}
 
-            </FilterContainer>
-            <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}}> 
-                <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
-                ADD TO CART
-            </ButtonCart>
-          </InfoContainer>
-        </Wrapper>
+                    <FilterContainer>
+                      {product.category === 'Sneakers' ?
+                        <FilterSizes>
+                           <FilterTitle>Size :</FilterTitle>
+                              <FilterSize color="#C5DCDD" value={sizeS} onChange={(e) => setSizes(e.target.value)}>
+                                  <FilterOption>37</FilterOption>
+                                  <FilterOption>38</FilterOption>
+                                  <FilterOption>39</FilterOption>
+                                  <FilterOption>40</FilterOption>
+                                  <FilterOption>41</FilterOption>
+                                  <FilterOption>42</FilterOption>
+                                  <FilterOption>43</FilterOption>
+                                  <FilterOption>44</FilterOption>
+                              </FilterSize>
+                        </FilterSizes> :
+                      <FilterSizes>
+                           <FilterTitle>Size :</FilterTitle>
+                              <FilterSize color="#C5DCDD" value={size} onChange={(e) => setSize(e.target.value)}>
+                                  <FilterOption>S</FilterOption>
+                                  <FilterOption>M</FilterOption>
+                                  <FilterOption>L</FilterOption>
+                                  <FilterOption>XL</FilterOption>
+                                  <FilterOption>XXL</FilterOption>
+                              </FilterSize>
+                      </FilterSizes>
+                      }            
+                        <Filter value={color} onChange={(e) => setColor(e.target.value)}>
+                            <FilterTitle>Color :</FilterTitle>
+                            <FilterColor color="#261C2C"/>
+                            <FilterColor color="gray"/>
+                            <FilterColor color="#F7D59C"/>
+                        </Filter>
+                        
+                    </FilterContainer>
+                      <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={addToCart}> 
+                          <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
+                          ADD TO CART
+                      </ButtonCart>
+                  </InfoContainer>
+            </Wrapper>
       </Container>
+    )}
       <NewsLetter/>
       <Footer />
     </>

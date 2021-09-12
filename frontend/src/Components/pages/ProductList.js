@@ -2,9 +2,9 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Navbar from '../Navbar/Navbar'
 import Products from '../Products/Products'
-import NewsLetter from '../../NewsLetter'
+import NewsLetter from '../Stuff/NewsLetter'
 import Footer from '../Footer/Footer'
-import Announcement from '../../Announcement'
+import Announcement from '../Stuff/Announcement'
 
 const Container = styled.div`
     display: flex;
@@ -47,7 +47,7 @@ const Title = styled.h1`
 `
 
 const FilterText = styled.span`
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
 
     @media(max-width: 320px){
@@ -65,8 +65,8 @@ const FilterText = styled.span`
 `
 
 const Select = styled.select`
-    padding: 8px;
-    margin-left: 5px;
+    padding: 1px;
+    margin-left: 10px;
     border: 2px solid #111;
     background: transparent;
     outline: none;

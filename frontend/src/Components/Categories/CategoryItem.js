@@ -30,6 +30,7 @@ const Title = styled.h1`
     color: white;
     margin-bottom: 20px;
     font-size: 2.5rem;
+    font-weight: bold;
 
 `
 
@@ -58,7 +59,7 @@ const Container = styled.div
     margin: 70px 50px;
     justify-content: center;
 
-    @media screen and (max-width: 1024px){
+    @media screen and (max-width: 1280px){
         margin: 70px 0px;
         transform: scale(80%);
     }
@@ -93,9 +94,9 @@ const CategoryItem = ({ item }) => {
     return (
         <CategoryWrapper>
             <Container>
-                <Image src={item.img}/>
+                <Image src={ item.img }/>
                 <Info>
-                    <Title>{ item.title}</Title>
+                    <Title>{ item.title }</Title>
                     <Button>SHOP NOW</Button>
                 </Info>
             </Container>

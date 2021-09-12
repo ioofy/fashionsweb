@@ -1,13 +1,15 @@
 import React from 'react'
-import { Spinner } from 'react-bootstrap'
+import { CircleToBlockLoading   } from 'react-loadingg'
+
+
 
 const Loader = () => {
     return (
-        <Spinner animation='grow' role='status' style={{ width: '100px', height: '100px', margin: '150px auto', display: 'block'}}>
+        <CircleToBlockLoading   role='status' style={{margin: '200px auto', display: 'block'}} size='large'>
 
             <span className='sr-only'>Loading...</span>
 
-        </Spinner>
+        </CircleToBlockLoading>
     )
 }
 

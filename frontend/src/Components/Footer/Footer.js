@@ -7,7 +7,8 @@ import {
     SocialLogo,SocialIconLink,SocialIcons,
     Alrights, Privacy
 } from './FooterElement'
-import {FaFacebookSquare, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa'
+import {FaFacebookSquare, FaInstagram, FaTwitter } from 'react-icons/fa'
+import {IoLogoWhatsapp} from 'react-icons/io'
 
 
 const Footer = () => {
@@ -62,7 +63,7 @@ const Footer = () => {
                             <FaTwitter/>
                         </SocialIconLink>
                         <SocialIconLink href='/' target='_blank' aria-label="Twitter">
-                            <FaLinkedinIn/>
+                            <IoLogoWhatsapp/>
                         </SocialIconLink>
                     </SocialIcons>
                 </SocialMediaWrap>

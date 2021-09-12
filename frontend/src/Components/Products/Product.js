@@ -3,7 +3,7 @@ import styled from '@emotion/styled/macro'
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
-import Rating from '../../Rating';
+import Rating from '../Stuff/Rating';
 
 const ProductInfo = styled.div`
 
@@ -22,6 +22,7 @@ const InfoHover = styled.div`
     position: absolute;
     top: 0;
     left: 0;
+    padding-top: 50px;
     z-index: 3;
     display: flex;
     align-items: center;
@@ -79,7 +80,7 @@ const Info = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-top: -7px;
+    margin-top: 20px;
 `
 
 const IconHover = styled.div`
@@ -103,11 +104,14 @@ const Icon = styled.div`
     color: #FF3D68;
     margin-right: 1px;
     margin-top: 20px;
+    position: absolute;
     
 `
 
 const TextInfo = styled.h1`
     font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
     position: absolute;
     left: 0;
     margin-left: 1px;
@@ -117,7 +121,7 @@ const TextInfo = styled.h1`
 const RatingInfo = styled.div`
 
     position: absolute;
-    margin-top: 45px;
+    margin-top: 46px;
     left: 0;
     margin-left: 1px;
     font-size: 15px;
@@ -126,18 +130,16 @@ const RatingInfo = styled.div`
 const PriceInfo = styled.h1`
     font-size: 0.9rem;
     position: absolute;
+    font-weight: bold;
     left: 0;
     margin-left: 1px;
     font-family: 'JetBrains Mono', monospace;
-    margin-top: 90px;
+    margin-top: 95px;
 `
 
 const Product = ( { product } ) => {
+  
 
-    const toTop = () => {
-        window.scrollTo(0,0);
-    }
-    
     return (
         <ProductInfo>
             <Container>
@@ -154,12 +156,12 @@ const Product = ( { product } ) => {
                             IDR {product.price}
                         </PriceInfo>
                         <Icon>
-                            <FavoriteBorderOutlinedIcon/>
+                            <Link to='/wishlist'><FavoriteBorderOutlinedIcon style={{color: '#FF6B6B'}}/></Link>
                         </Icon>
                     </Info>
                     <InfoHover>
                         <IconHover>
-                        <Link to={`/products/item/${product._id}`} onClick={toTop} ><SearchIcon style={{fontSize: '25px', marginTop:'5px', color: '#FF6B6B'}}/></Link>
+                        <Link to={`/products/item/${product._id}`} ><SearchIcon style={{fontSize: '25px', marginTop:'1px', color: '#FF6B6B'}}/></Link>
                         </IconHover>
                     </InfoHover>
                 </Wrapper>

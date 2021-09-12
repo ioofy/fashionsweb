@@ -39,11 +39,15 @@ export const NavLogo = styled.a`
     @media screen and (max-width: 960px){
         display: none;
     }
+
+    &:hover{
+        color: #FF95C5;
+    }
 `
 
 export const NavIcon = styled.div`
     margin-left: 150px;
-    margin-top: 35px;
+    margin-top: 27px;
     position: absolute;
     text-align: center;
     flex-wrap: wrap;
