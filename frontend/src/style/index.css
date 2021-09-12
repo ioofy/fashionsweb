@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Favfont';
+  src: local('Calibre-Regular'), local('Calibre-Regular'),
+      url('Calibre-Regular.woff2') format('woff2'),
+      url('Calibre-Regular.woff') format('woff'),
+      url('Calibre-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Poynter';
+  src: local('Poynter'),
+      url('Poynter.ttf') format('truetype');
+  font-style: normal;
+  font-weight: bold;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+
+body{
+  font-family: 'Favfont' !important;
+  background-color: #F9F2EE !important;
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
