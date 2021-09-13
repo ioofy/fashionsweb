@@ -36,6 +36,10 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    haveColor: {
+        type: String,
+        required: true
+    },
 
     reviews: [reviewSchema],
 
@@ -58,7 +62,7 @@ const productSchema = mongoose.Schema({
         type: Number,
         required: true,
         default: 0,
-    },
+    }
 
 }, {
 

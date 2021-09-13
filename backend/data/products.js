@@ -7,6 +7,7 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 720000,
         rating: 4.5,
+        haveColor: "yes",
         numReviews: 4,
         category: 'Hoodie',
         countInStock: 0,
@@ -19,10 +20,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 5200000,
         rating: 3.5,
+        haveColor: "no",
         numReviews: 2,
-        category: 'Sneakers',
+        category: "Sneakers",
         countInStock: 1,
-        brand: 'Adidas'
+        brand: "Adidas"
     },
     {
         image: "/prod_img/womencoat.png",
@@ -31,10 +33,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 1200000,
         rating: 4.5,
+        haveColor: "yes",
         numReviews: 2,
-        category: 'Coat',
+        category: "Coat",
         countInStock: 2,
-        brand: 'Girl x Love'
+        brand: "Girl x Love"
     },
     {
         image: "/prod_img/amatsujacket.png",
@@ -43,10 +46,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 520000,
         rating: 4,
+        haveColor: "yes",
         numReviews: 1,
-        category: 'Hoodie',
+        category: "Hoodie",
         countInStock: 3,
-        brand: 'Amatsu'
+        brand: "Amatsu"
     },
     {
         image: "/prod_img/adidas.png",
@@ -55,10 +59,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 600000,
         rating: 4,
+        haveColor: "yes",
         numReviews: 1,
-        category: 'Hoodie',
+        category: "Hoodie",
         countInStock: 4,
-        brand: 'Heron Preston'
+        brand: "Heron Preston"
     },
     {
         image: "/prod_img/amatsujacket.png",
@@ -67,10 +72,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 720000,
         rating: 4,
+        haveColor: "yes",
         numReviews: 1,
-        category: 'Hoodie',
+        category: "Hoodie",
         countInStock: 5,
-        brand: 'Champion'
+        brand: "Champion"
     },
     {
         image: "/prod_img/adidas.png",
@@ -79,10 +85,11 @@ const products = [
         "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus nullam eget felis eget nunc lobortis mattis.",
         price: 720000,
         rating: 5,
+        haveColor: "no",
         numReviews: 1,
-        category: 'Sneakers',
+        category: "Sneakers",
         countInStock: 0,
-        brand: 'Adidas'
+        brand: "Adidas"
     },
     
     

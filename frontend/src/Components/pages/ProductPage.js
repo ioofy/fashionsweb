@@ -143,7 +143,7 @@ const FilterContainer = styled.div`
 
 const Filter = styled.div`
   display: flex;
-  margin-top: 20px;
+  margin-top: -5px;
 `
 
 const FilterSizes = styled.div`
@@ -201,6 +201,7 @@ const ButtonCart = styled.button`
   padding: 8px;
   width: 10rem;
   height: 2.5rem;
+  margin-top: 15px;
   position: absolute;
   display: flex;
   text-decoration: none;
@@ -218,13 +219,15 @@ const ProductPage = ({ history, match }) => {
   const [sizeS, setSizes] = useState(37);
   const [size, setSize] = useState('S');
   const [qty, setQty] = useState(1);
-  const [color, setColor] = useState();
 
   const dispatch = useDispatch();
-
   const productDetails = useSelector(state => state.productDetails);
-
   const { loading, error, product } = productDetails
+
+  const addToCart = () => {
+    //bukan sneaker
+    history.push(`/cart/${match.params.id}?qty=${qty}`);
+  }
 
   useEffect(() => {
 
@@ -232,16 +235,29 @@ const ProductPage = ({ history, match }) => {
 
   }, [dispatch, match])
 
-  const addToCart = ( ) => {
+  // useEffect(() => {
 
-     history.push(`/cart/${match.params.id}?qty=${qty}?sizes=${size}`);
-  }
+  //   // memilih local storage value
+  //   const currentColor = localStorage.getItem('colors');
+    
+  //   if(currentColor) {
+  //     setColor(currentColor);
+  //   }
+
+  // }, [])
+
+  // // Memilih warna tapi optional lain waktu akan diupdate
+  // const handleClick = (color) => {
+  //     setColor(color);
+  //     localStorage.setItem('colors', color)
+  // }
+  
 
 
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
+      {loading ? <Loader /> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : (
       <Container>
         <Link to="/products" style={{ cursor: "auto" }}>
           <ButtonBack>
@@ -263,14 +279,15 @@ const ProductPage = ({ history, match }) => {
                   <InfoContainer>
                     <Title>{product.name}</Title>
                     <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
-                    <Price>IDR {product.price}</Price>
+                    <Price>Rp {product.price},00</Price>
                     <Description>{product.description}</Description>
                     <Status> Avaliable : {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Status>
                     <Status style={{marginTop: '15px'}}>Brand : {product.brand}</Status>
                     {product.countInStock > 0 && (
                       <AddContainer>
                           <FilterTitle>Qty : </FilterTitle>
-                              <Form as='select' value={qty} onChange={(e) => setQty(e.target.value)} style={{width: '3.8rem', marginLeft: '14px', textAlign: 'center', border: 'none', background: '#9D9D9D', cursor: 'pointer'}}>
+                              <Form as='select' value={qty} onChange={(e) => setQty(e.target.value)} style={{width: '3.8rem', 
+                              marginLeft: '14px', textAlign: 'center', border: 'none', background: '#9D9D9D', cursor: 'pointer'}}>
                                 {
                                   [...Array(product.countInStock).keys()].map((x) => (
                                     <option key={x + 1} value={x + 1}> {x + 1}</option>
@@ -279,7 +296,6 @@ const ProductPage = ({ history, match }) => {
                               </Form>
                       </AddContainer>
                     )}
-
                     <FilterContainer>
                       {product.category === 'Sneakers' ?
                         <FilterSizes>
@@ -304,27 +320,28 @@ const ProductPage = ({ history, match }) => {
                                   <FilterOption>XL</FilterOption>
                                   <FilterOption>XXL</FilterOption>
                               </FilterSize>
-                      </FilterSizes>
-                      }            
-                        <Filter value={color} onChange={(e) => setColor(e.target.value)}>
-                            <FilterTitle>Color :</FilterTitle>
-                            <FilterColor color="#261C2C"/>
-                            <FilterColor color="gray"/>
-                            <FilterColor color="#F7D59C"/>
-                        </Filter>
-                        
+                      </FilterSizes> 
+                      }           
                     </FilterContainer>
+
+                    <Filter className="theme-options">
+                              <FilterTitle>Color :</FilterTitle>
+                              <FilterColor color="#261C2C" id="black" />
+                              <FilterColor color="gray" id="gray"/>
+                              <FilterColor color="#F7D59C" id="charcoal" />
+                    </Filter>
                       <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={addToCart}> 
                           <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
                           ADD TO CART
                       </ButtonCart>
+
                   </InfoContainer>
             </Wrapper>
       </Container>
     )}
       <NewsLetter/>
       <Footer />
-    </>
+  </>
   );
 };
 

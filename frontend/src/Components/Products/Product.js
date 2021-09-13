@@ -153,7 +153,7 @@ const Product = ( { product } ) => {
                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px' /> 
                         </RatingInfo>
                         <PriceInfo>
-                            IDR {product.price}
+                            {product.price.toLocaleString('id', { style: 'currency', currency: 'IDR' })}
                         </PriceInfo>
                         <Icon>
                             <Link to='/wishlist'><FavoriteBorderOutlinedIcon style={{color: '#FF6B6B'}}/></Link>

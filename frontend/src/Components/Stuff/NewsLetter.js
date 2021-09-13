@@ -10,6 +10,14 @@ const Container = styled.div`
     flex-direction: column;
     background-color: #FDD2BF;
     margin-top: 80px;
+
+    @media screen and (max-width: 1024px){
+        height: 30vh;
+    }
+
+    @media screen and (max-width: 768px){
+        height: 45vh;
+    }
 `
 
 const Title = styled.h1`

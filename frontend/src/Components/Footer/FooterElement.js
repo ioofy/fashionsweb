@@ -63,15 +63,30 @@ export const FooterLinkTitle = styled.h2`
     margin-bottom: 30px;
     font-weight: bold;
     color: #111;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+
+    @media screen and (max-width: 600px){
+        font-size: 1.7rem;
+    }
+
+    @media screen and (max-width: 414px){
+        font-size: 1.3rem;
+    }
 `
 
 export const FooterLink = styled(Link)`
     color: #111;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
 
+    @media screen and (max-width: 600px){
+        font-size: 1.6rem;
+    }
+
+    @media screen and (max-width: 414px){
+        font-size: 1.2rem;
+    }
     &:hover{
         color: #F46F40;
         transition: 0.3s ease-out;

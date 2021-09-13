@@ -156,7 +156,7 @@ export const IconButton = styled.button`
         position: absolute;
         left: 0;
         height: 100%;
-        border-radius: 50%
+        border-radius: 50%;
         z-index: -1;
         background : #000;
         transition: 0.2s ease;

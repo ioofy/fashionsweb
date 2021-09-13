@@ -29,3 +29,15 @@ body{
   margin: 0;
   box-sizing: border-box;
 }
+
+
+.container .group{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+@media screen and (max-width: 768px){
+  .container .trash-btn{
+  }
+}

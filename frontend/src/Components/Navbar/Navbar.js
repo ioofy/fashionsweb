@@ -30,7 +30,7 @@ const Navbar = () => {
 
                   <LinkContainer to='/cart'>
                     <NavLinks>
-                        <Badge badgeContent={1} color="primary">
+                        <Badge badgeContent={0} color="primary">
                           <LocalMallOutlinedIcon />
                         </Badge>
                     </NavLinks> 

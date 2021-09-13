@@ -54,16 +54,16 @@ const Footer = () => {
                     </SocialLogo>
                     <SocialIcons>
                         <SocialIconLink href={'//www.facebook.com'} target='_blank' aria-label="facebook" rel="noopener noreferrer">
-                            <FaFacebookSquare/>
+                            <FaFacebookSquare style={{color: '#0F52BA'}}/>
                         </SocialIconLink>
                         <SocialIconLink href='/' target='_blank' aria-label="Instagram">
-                            <FaInstagram/>
-                        </SocialIconLink>
-                        <SocialIconLink href='/' target='_blank' aria-label="Twitter" style={{}}>
-                            <FaTwitter/>
+                            <FaInstagram style={{color: '#F037A5'}} />
                         </SocialIconLink>
                         <SocialIconLink href='/' target='_blank' aria-label="Twitter">
-                            <IoLogoWhatsapp/>
+                            <FaTwitter style={{color: '#3DB2FF'}} />
+                        </SocialIconLink>
+                        <SocialIconLink href='/' target='_blank' aria-label="Twitter">
+                            <IoLogoWhatsapp style={{color: '#01937C'}} />
                         </SocialIconLink>
                     </SocialIcons>
                 </SocialMediaWrap>
