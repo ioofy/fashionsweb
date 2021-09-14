@@ -9,14 +9,18 @@ const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     background-color: #FDD2BF;
-    margin-top: 80px;
+    margin-top: 100px;
 
     @media screen and (max-width: 1024px){
         height: 30vh;
     }
 
     @media screen and (max-width: 768px){
-        height: 45vh;
+        height: 35vh;
+    }
+
+    @media screen and (max-width: 540px){
+        height: 40vh;
     }
 `
 
@@ -45,12 +49,16 @@ const Description = styled.div`
         text-align: center;
     }
 
-    @media screen and (max-width: 600px){
-        font-size: 30px;
+    @media screen and (max-width: 884px){
+        font-size: 22px;
     }
 
     @media screen and (max-width: 414px){
-        font-size: 22px;
+        font-size: 18px;
+    }
+
+    @media screen and (max-width: 540px){
+        font-size: 20px;
     }
 
     @media screen and (max-width: 320px){

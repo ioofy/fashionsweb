@@ -84,7 +84,7 @@ export const FooterLink = styled(Link)`
         font-size: 1.6rem;
     }
 
-    @media screen and (max-width: 414px){
+    @media screen and (max-width: 540px){
         font-size: 1.2rem;
     }
     &:hover{

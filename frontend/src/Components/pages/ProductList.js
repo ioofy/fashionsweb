@@ -38,7 +38,7 @@ const Filter = styled.div`
 const Title = styled.h1`
     margin: 60px 0px 0px;
     font-family: 'Poynter';
-    font-size : 3rem;
+    font-size : 3.8rem;
     text-align: center;
 
     @media(max-width: 414px){
@@ -67,9 +67,10 @@ const FilterText = styled.span`
 const Select = styled.select`
     padding: 1px;
     margin-left: 10px;
-    border: 2px solid #111;
     background: transparent;
+    cursor: pointer;
     outline: none;
+    border: none;
 `
 
 const Option = styled.option`

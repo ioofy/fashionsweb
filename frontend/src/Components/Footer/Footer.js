@@ -13,6 +13,7 @@ import {IoLogoWhatsapp} from 'react-icons/io'
 
 const Footer = () => {
     return (
+    <>
         <FooterContainer>
             <FooterLinksContainer>
                 <FooterLinksWrapper>
@@ -69,6 +70,7 @@ const Footer = () => {
                 </SocialMediaWrap>
             </SocialMedia>
         </FooterContainer>
+    </>
     )
 }
 

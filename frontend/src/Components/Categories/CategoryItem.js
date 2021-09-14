@@ -59,8 +59,9 @@ const Container = styled.div
     margin: 70px 50px;
     justify-content: center;
 
-    @media screen and (max-width: 1280px){
+    @media screen and (max-width: 848px){
         margin: 70px 0px;
+        height: 40vh;
         transform: scale(80%);
     }
 

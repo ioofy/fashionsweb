@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Rating from '../Stuff/Rating'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Footer from "../Footer/Footer";
-import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import NewsLetter from "../Stuff/NewsLetter";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductsDetails } from "../../actions/productActions";
@@ -297,7 +297,7 @@ const ProductPage = ({ history, match }) => {
                       </AddContainer>
                     )}
                     <FilterContainer>
-                      {product.category === 'Sneakers' ?
+                    { product.category === 'Sneakers' ?
                         <FilterSizes>
                            <FilterTitle>Size :</FilterTitle>
                               <FilterSize color="#C5DCDD" value={sizeS} onChange={(e) => setSizes(e.target.value)}>
@@ -321,18 +321,19 @@ const ProductPage = ({ history, match }) => {
                                   <FilterOption>XXL</FilterOption>
                               </FilterSize>
                       </FilterSizes> 
-                      }           
+                    }           
                     </FilterContainer>
 
                     <Filter className="theme-options">
-                              <FilterTitle>Color :</FilterTitle>
-                              <FilterColor color="#261C2C" id="black" />
-                              <FilterColor color="gray" id="gray"/>
-                              <FilterColor color="#F7D59C" id="charcoal" />
+                        <FilterTitle>Color :</FilterTitle>
+                        <FilterColor color="#261C2C" id="black" />
+                        <FilterColor color="gray" id="gray"/>
+                        <FilterColor color="#F7D59C" id="charcoal" />
                     </Filter>
+
                       <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={addToCart}> 
-                          <ShoppingCartOutlinedIcon style={{ marginRight: '5px', fontSize: '22px', marginTop: '-3px'}} /> 
-                          ADD TO CART
+                          <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
+                          ADD TO BAG
                       </ButtonCart>
 
                   </InfoContainer>

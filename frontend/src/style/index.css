@@ -37,7 +37,153 @@ body{
   outline: none;
 }
 
-@media screen and (max-width: 768px){
+.container .product-image{
+  margin-top: -18px;
+}
+
+.container .product-name,.container .product-price, .container .product-form{
+  margin-top: 25px;
+}
+
+.container .product-form{
+  width: 3.5rem;
+  height: 1.5rem;
+  margin-left: 8px;
+  text-align: center;
+  border: none;
+  outline: none;
+  background-color: #9D9D9D;
+}
+
+.container .product-name a{
+  text-decoration: none;
+  color: #111;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.container .product-price {
+  font-family: 'JetBrains Mono';
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+.container .trash-btn{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin-top: 20px;
+}
+
+.container .trash-btn:hover{
+  background-color: #C5DCDD;
+}
+
+.container .group-checkout{
+  background-color: #F9F2EE;
+}
+
+.container .group-checkout button{
+  outline: none;
+  border: none;
+  background-color: #38A3A5;
+  font-weight: bold;
+  font-size: 17px;
+  font-family: "JetBrains Mono";
+}
+
+.container .group-checkout button:hover{
+  background-color: #112031;
+}
+
+.container .group-checkout h2{
+  font-family: "JetBrains Mono";
+  font-size: 28px;
+}
+
+.container .group-checkout h5{
+  font-family: "JetBrains Mono";
+  font-size: 18px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1024px){
+  .container .product-name,.container .product-price, .container .product-form{
+    margin-top: 0px;
+  }
+
   .container .trash-btn{
+    margin-top: -3px;
+  }
+}
+
+@media screen and (max-width: 884px){
+
+  .container .product-image{
+    padding-top: 10px;
+  }
+
+  .container .product-form{
+    width: 3rem;
+    margin-left: 20px;
+  }
+
+  .container .trash-btn{
+    margin: -5px 15px;
+  }
+
+  .container .product-price {
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .container .product-name a{
+    font-size: 15px;
+  }
+
+  .container .group-checkout button{
+    font-size: 13px;
+  }
+  
+  .container .group-checkout h2{
+    font-size: 20px;
+  }
+  
+  .container .group-checkout h5{
+    font-size: 15px;
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .container .product-image{
+    width: 70%;
+  }
+
+  .container .product-form{
+    margin: 20px 0px;
+  }
+
+  .container .trash-btn{
+    background-color: #C3BEF0;
+    margin: 0;
+  }
+
+  .container .trash-btn:hover{
+    background-color: #C3BEF0;
+  }
+
+  .container .product-name a{
+    font-size: 20px;
+  }
+
+  .container .product-price{
+    font-size: 15px;
+  }
+
+  .container .group-checkout button{
+    font-size: 17px;
   }
 }

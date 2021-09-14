@@ -11,7 +11,7 @@ import styled from '@emotion/styled'
 
 const TextInfoCat = styled.h1`
   font-family: 'Poynter';
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
 
   @media screen and (max-width: 600px){
@@ -21,7 +21,7 @@ const TextInfoCat = styled.h1`
 
 const TextInfoCloth = styled.h1`
   font-family: 'Poynter';
-  font-size: 3rem;
+  font-size: 3.5rem;
   text-align: center;
 
   @media screen and (max-width: 600px){
