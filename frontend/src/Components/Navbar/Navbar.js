@@ -1,10 +1,12 @@
 import React from 'react'
 import { NavLogo, NavbarContainer, Header, NavIcon, SearchContainer, SearchInput, IconButton, NavLinks } from './NavbarElements'
-import { FiHeart, FiLogIn} from "react-icons/fi"
+import { FiHeart } from "react-icons/fi"
 import { BiSearchAlt } from "react-icons/bi"
+import { IoLanguage } from "react-icons/io5"
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import Badge from '@material-ui/core/Badge';
 import { LinkContainer } from "react-router-bootstrap"
+
 
 const Navbar = () => {
 
@@ -16,12 +18,13 @@ const Navbar = () => {
                 <NavLogo> Fashions.</NavLogo>
               </LinkContainer>
                 <NavIcon>
-                  <LinkContainer to='/login'>
+
+                  <LinkContainer to='/'>
                     <NavLinks>
-                      <FiLogIn/>
-                      </NavLinks>
+                      <IoLanguage />
+                    </NavLinks>
                   </LinkContainer>
- 
+
                   <LinkContainer to='/wishlist'>
                     <NavLinks>
                       <FiHeart />
@@ -35,6 +38,7 @@ const Navbar = () => {
                         </Badge>
                     </NavLinks> 
                   </LinkContainer>
+
                 </NavIcon>
                   <SearchContainer>
                     <IconButton>

@@ -36,7 +36,7 @@ const Products = () => {
     
     return (
     <>
-        { loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : 
+        { loading ? <Loader margin= '200px auto'/> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : 
         
         <ContainerProd>
             {products.map(product => (

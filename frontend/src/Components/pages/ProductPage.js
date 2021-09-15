@@ -257,7 +257,7 @@ const ProductPage = ({ history, match }) => {
   return (
     <>
       <Navbar />
-      {loading ? <Loader /> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : (
+      {loading ? <Loader margin= '200px auto' /> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : (
       <Container>
         <Link to="/products" style={{ cursor: "auto" }}>
           <ButtonBack>

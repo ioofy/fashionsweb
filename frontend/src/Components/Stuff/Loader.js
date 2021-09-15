@@ -3,9 +3,9 @@ import { RotateCircleLoading } from 'react-loadingg'
 
 
 
-const Loader = () => {
+const Loader = ({margin}) => {
     return (
-        <RotateCircleLoading    role='status' style={{margin: '200px auto', display: 'block'}} size='large'>
+        <RotateCircleLoading role='status' style={{margin, display: 'block'}} size='large'>
 
             <span className='sr-only'>Loading...</span>
 

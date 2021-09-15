@@ -19,15 +19,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
 
+html,
 body{
   font-family: 'Favfont' !important;
   background-color: #F9F2EE !important;
+  width: 100%;
+  height: 100%;
 }
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+#root{
+  width: 100%;
+  height: 100%;
 }
 
 

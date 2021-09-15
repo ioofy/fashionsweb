@@ -62,3 +62,38 @@ export const MenuLinks = styled(Link)`
     }
 `
 
+export const LoginContainer = styled.div`
+    display: flex;
+    height: 80px;
+    justify-content: flex-end;
+    z-index: 1;
+    width: 40%;
+    max-width: 1350px;
+    position: absolute;
+    margin-left: 500px;
+    margin-top: -2px;
+
+    @media screen and (max-width: 1280px){
+        max-width: 1160px;
+    }
+
+    @media (max-width: 1024px){
+        max-width: 990px;
+    }
+
+    @media screen and (max-width: 960px){
+        display: none;
+    }
+`
+
+export const NavLinks = styled.a`
+    color: #111;
+    font-size: 1.3rem;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+        color: #F46F40;
+    }
+
+`
