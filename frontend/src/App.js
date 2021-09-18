@@ -6,6 +6,7 @@ import ProductList from './Components/pages/ProductList';
 import ScrollToTop from './Components/Stuff/ScrollToTop';
 import Cart from './Components/pages/Cart';
 import Login from './Components/pages/Login'
+import Profile from './Components/pages/Profile';
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Router>
         <ScrollToTop/>
         <Route path='/login' component={Login}/>
+        <Route path='/profile' component={Profile}/>
         <Route path='/products/' component={ProductList} exact />
         <Route path='/products/item/:id' component={ProductPage} />
         <Route path='/cart/:id?' component={Cart}/>

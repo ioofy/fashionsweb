@@ -90,6 +90,7 @@ export const NavLinks = styled.a`
     color: #111;
     font-size: 1.3rem;
     cursor: pointer;
+    font-weight: bold;
     text-decoration: none;
 
     &:hover{

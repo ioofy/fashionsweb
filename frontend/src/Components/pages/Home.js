@@ -8,6 +8,7 @@ import Categories from '../Categories/Categories'
 import NewsLetter from '../Stuff/NewsLetter'
 import Products from '../Products/Products'
 import styled from '@emotion/styled'
+import NavbarBottom from '../Navbar/NavbarBottom'
 
 const TextInfoCat = styled.h1`
   font-family: 'Poynter';
@@ -32,6 +33,7 @@ const TextInfoCloth = styled.h1`
 
 
 const Home = () => {
+
     return (
       <>
           <Announcement/>
@@ -48,6 +50,7 @@ const Home = () => {
                 <Products />
               <NewsLetter />
           <Footer/>
+          <NavbarBottom/>
       </>
   
     )

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import Navbar from '../Navbar/Navbar'
+import NavbarBottom from '../Navbar/NavbarBottom'
 import Products from '../Products/Products'
 import NewsLetter from '../Stuff/NewsLetter'
 import Footer from '../Footer/Footer'
@@ -111,6 +112,7 @@ const ProductList = () => {
                  <Products />
         <NewsLetter/>
         <Footer/>
+        <NavbarBottom/>
     </>
     )
 }

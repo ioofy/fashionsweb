@@ -1,7 +1,8 @@
 import styled from "@emotion/styled"
 
 export const Header = styled.nav`
-    height: 80px;
+    height: 85px;
+    background: ${({active}) => active ? "#FDD2BF" : "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%)"};
     display: flex;
     justify-content: center;
     font-size: 1rem;
@@ -33,7 +34,7 @@ export const NavLogo = styled.a`
     text-decoration: none;
     font-size: 2rem;
     display: flex;
-    margin-top: 15px;
+    margin-top: 10px;
     font-family: 'Pacifico', cursive;
     
     @media screen and (max-width: 960px){
@@ -47,7 +48,7 @@ export const NavLogo = styled.a`
 
 export const NavIcon = styled.div`
     margin-left: 150px;
-    margin-top: 27px;
+    margin-top: 22px;
     position: absolute;
     text-align: center;
     flex-wrap: wrap;
@@ -61,7 +62,7 @@ export const NavIcon = styled.div`
     
 `
 
-export const NavLinks = styled.a`
+export const NavLinks = styled.p`
     color: #111;
     font-size: 1.5rem;
     cursor: pointer;
@@ -77,8 +78,8 @@ export const SearchContainer = styled.div`
     position: relative;
     width: 970px;
     height: 45px;
-    margin-top: 20px;
-    background: #EDE1E1;
+    margin-top: 15px;
+    background: #F7F6F2;
     align-items: center;
     box-sizing: border-box;
     justify-content: space-between;
@@ -163,3 +164,4 @@ export const IconButton = styled.button`
         transform: scale(0.6);
     }
 `
+

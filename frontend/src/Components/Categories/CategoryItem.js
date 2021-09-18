@@ -56,12 +56,18 @@ const Container = styled.div
     display: flex;
     height: 50vh;
     flex: 1;
-    margin: 70px 50px;
+    margin: 70px 48px;
     justify-content: center;
+
+    @media screen and (max-width: 1024px){
+        margin: 50px 0px;
+        height: 50vh;
+        transform: scale(75%);
+    }
 
     @media screen and (max-width: 848px){
         margin: 70px 0px;
-        height: 40vh;
+        height: 50vh;
         transform: scale(80%);
     }
 

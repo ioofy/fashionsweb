@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
+import { AccountContext } from './accountContext'
+import { BoxContainer, FormContainer, MutedLink, SubmitButton, Input, BoldLink } from './common'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Stuff/Message'
 import Loader from '../Stuff/Loader'
-import { AccountContext } from './accountContext'
-import { BoxContainer, FormContainer, MutedLink, SubmitButton, Input, BoldLink } from './common'
-import { Marginer } from './marginer'
 import { login } from '../../actions/userActions'
 import { useHistory } from 'react-router-dom'
+import { Marginer } from './marginer'
 
 const LoginForm = ( { location } ) => {
     
@@ -24,11 +24,13 @@ const LoginForm = ( { location } ) => {
     useEffect(() => {
         if (userInfo) {
             history.push("/")
+            window.location.reload()
         }
     }, [history, userInfo, redirect])
     
     const submitHandler = (e) => {
         e.preventDefault()
+        // DISPATCH LOGIN INFO
         dispatch(login(email, password))
     }
     
@@ -47,12 +49,11 @@ const LoginForm = ( { location } ) => {
                     <Input type="password" placeholder="🔑 Your Password" id="password" value={password} 
                     onChange={(e) => setPassword(e.target.value)} required/>
 
-                    <Marginer direction="vertical" margin="1em" />
-                    <SubmitButton type="submit">Sign In</SubmitButton>
-                </FormContainer>
                     <MutedLink type="right">Forget your password?</MutedLink>
-                    <MutedLink>Don't have an account? 
-                       {/* link to register not effect at all in history.push */}
+                    <SubmitButton type="submit">Sign In</SubmitButton>
+                    <Marginer direction="vertical" margin="0.5em" />
+                </FormContainer>
+                    <MutedLink>Didn't have an account? 
                         <BoldLink onClick={switchToSignup}>
                             Register
                         </BoldLink>

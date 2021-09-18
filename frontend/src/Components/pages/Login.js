@@ -11,15 +11,23 @@ const Container = styled.div`
     margin: auto;
 `
 const NeedHelp = styled.p`
-    position: absolute;
-    margin-top: 41rem;
+    margin-top: -13rem;
     font-size: 17px;
     color: #111;
 
-    @media screen and (max-width: 320px){
-        margin-top: 39rem;
+    @media screen and (max-width: 540px){
+        margin-top: -1rem;
         font-size: 15px;
     }
+
+    @media screen and (max-width: 320px){
+        margin-top: 0.5rem;
+    }
+
+    @media screen and (max-width: 280px){
+        margin-top: -2rem;
+    }
+
 
 `
 
@@ -29,7 +37,7 @@ const Contact = styled.a`
     color: rgb(255,118,117);
     font-weight: bold;
 
-    @media screen and (max-width: 320px){
+    @media screen and (max-width: 540px){
         font-size: 15px;
     }
 `

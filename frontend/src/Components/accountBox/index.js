@@ -8,7 +8,7 @@ import { AccountContext } from "./accountContext";
 const BoxContainer = styled.div`
   width: 320px;
   min-height: 570px;
-  margin: 210px auto;
+  margin: 220px auto;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
@@ -22,7 +22,7 @@ const BoxContainer = styled.div`
   }
 
   @media screen and (max-width: 320px){
-    width: 250px;
+    width: 260px;
     margin: 7px auto;
     min-height: 550px;
   }
@@ -110,7 +110,7 @@ const expandingTransition = {
 }
 
 export function AccountBox(props){
-
+  
   const [isExpanded, setExpanded] = useState(false);
   const [active, setActive] = useState("signin");
 
@@ -136,7 +136,7 @@ export function AccountBox(props){
     }, 400);
   }
 
-  const contextValue = { switchToSignup, switchToSignin };
+  const contextValue = { switchToSignup, switchToSignin }
 
    return(
       <>

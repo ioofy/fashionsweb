@@ -33,8 +33,10 @@ export const MutedLink = styled.p`
 export const BoldLink = styled.a`
   font-size: 15px;
   color: #1CAAB4;
+  cursor: pointer;
   font-weight: bold;
-  margin: 0 4px;
+  text-decoration: none;
+  margin: 0 2px;
   &:hover{
       color: #3DB2FF;
   }
@@ -42,13 +44,11 @@ export const BoldLink = styled.a`
 
 export const Input = styled.input`
   width: 100%;
-  margin-top: 10px;
+  margin-top: 15px;
   height: 42px;
-  outline: none;
   background: #EFEFEF;
   border: 1px solid rgba(200, 200, 200, 0.3);
   padding: 0px 10px;
-  border-bottom: 1.5px solid rgba(200, 200, 200, 0.4);
   transition: all 200ms ease-in-out;
   font-size: 14px;
   font-weight: bold;
