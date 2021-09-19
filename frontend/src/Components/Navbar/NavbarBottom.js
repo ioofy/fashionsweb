@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../actions/userActions'
@@ -13,11 +13,11 @@ const NavBottom = styled.div`
     display: flex;
     border-radius: 24px 24px 0px 0px;
     padding: 0px 40px;
-    background-color: #FDD2BF;
+    background-color: #F8D3E2;
     align-items: center;
     justify-content: space-between;
     z-index: 3;
-    position: ${({active}) => active ? "absolute" : "fixed"};
+    position: fixed;
     left: 0;
     bottom: 0;
     height: 60px;
@@ -33,12 +33,12 @@ const NavBottom = styled.div`
     }
 
     @media screen and (max-width: 320px){
-        padding: 0px 25px;
+        padding: 0px 20px;
     }
 `
 
 const NavLinks = styled.div`
-    color: #111;
+    color: #0d1137;
     font-size: 1.5rem;
     cursor: pointer;
 
@@ -53,31 +53,9 @@ const NavbarBottom = () => {
       dispatch(logout())
     }
 
-    const [scroll, setScroll] = useState(false);
-    const [state, setState] = useState({});
-
-    const changeNav = () => {
-        if(window.scrollY >= 4697){
-              setScroll(true);
-        }
-        else{
-              setScroll(false);
-        }
-    }
-    useEffect(() => {
-      changeNav( state );
-      return () => {
-        setState({});
-      };
-  }, [state]);
-  
-    useEffect(() => {
-      changeNav();
-      window.addEventListener("scroll", changeNav);
-    }, [])
 
     return (
-        <NavBottom active={scroll}>
+        <NavBottom>
            <LinkContainer to='/'>
               <NavLinks>
                 <FiHome />

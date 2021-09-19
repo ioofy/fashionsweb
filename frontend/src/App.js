@@ -7,6 +7,9 @@ import ScrollToTop from './Components/Stuff/ScrollToTop';
 import Cart from './Components/pages/Cart';
 import Login from './Components/pages/Login'
 import Profile from './Components/pages/Profile';
+import Shipping from './Components/pages/Shipping';
+import Payment from './Components/pages/Payment';
+import PlaceOrder from './Components/pages/PlaceOrder';
 
 
 
@@ -19,6 +22,9 @@ function App() {
         <Route path='/products/' component={ProductList} exact />
         <Route path='/products/item/:id' component={ProductPage} />
         <Route path='/cart/:id?' component={Cart}/>
+        <Route path='/shipping' component={Shipping}/>
+        <Route path='/payment' component={Payment}/>
+        <Route path='/placeorder' component={PlaceOrder}/>
         <Route path='/' component={Home} exact/>
     </Router>
   );

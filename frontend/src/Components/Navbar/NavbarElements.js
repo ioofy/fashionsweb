@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 
 export const Header = styled.nav`
     height: 85px;
-    background: ${({active}) => active ? "#FDD2BF" : "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%)"};
+    background: ${({active}) => active ? "#F8D3E2" : "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%)"};
     display: flex;
     justify-content: center;
     font-size: 1rem;

@@ -47,35 +47,35 @@ const Title = styled.h1`
     }
 `
 
-const FilterText = styled.span`
-    font-size: 18px;
-    font-weight: 600;
+// const FilterText = styled.span`
+//     font-size: 18px;
+//     font-weight: 600;
 
-    @media(max-width: 320px){
-        font-size: 17px;
-    }
+//     @media(max-width: 320px){
+//         font-size: 17px;
+//     }
 
-    @media screen and (max-width: 768px){
-        margin-left: 35px;
-    }
+//     @media screen and (max-width: 768px){
+//         margin-left: 35px;
+//     }
 
-    @media screen and (max-width: 414px){
-        margin-left: 10px;
-    }
+//     @media screen and (max-width: 414px){
+//         margin-left: 10px;
+//     }
 
-`
+// `
 
-const Select = styled.select`
-    padding: 1px;
-    margin-left: 10px;
-    background: transparent;
-    cursor: pointer;
-    outline: none;
-    border: none;
-`
+// const Select = styled.select`
+//     padding: 1px;
+//     margin-left: 10px;
+//     background: transparent;
+//     cursor: pointer;
+//     outline: none;
+//     border: none;
+// `
 
-const Option = styled.option`
-`
+// const Option = styled.option`
+// `
 
 const ProductList = () => {
     return (
@@ -86,7 +86,7 @@ const ProductList = () => {
             <Title>Our Latest Product</Title>
                 <FilterContainer>
                     <Filter>
-                        <FilterText>
+                        {/* <FilterText>
                             Filter By :
                             <Select>
                                 <Option disabled selected>Size</Option>
@@ -104,7 +104,7 @@ const ProductList = () => {
                                 <Option>L</Option>
                                 <Option>XL</Option>
                             </Select>
-                        </FilterText>
+                        </FilterText> */}
                     </Filter>
                 </FilterContainer>
                 <hr style={{marginTop: '20px', marginBottom: '-30px'}} />
