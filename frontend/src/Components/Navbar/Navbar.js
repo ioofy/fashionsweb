@@ -39,7 +39,7 @@ const Navbar = () => {
         <Header active={scroll}>
             <NavbarContainer>
               <LinkContainer to='/'>
-                <NavLogo> Fashions.</NavLogo>
+                <NavLogo active={scroll}> Fashions.</NavLogo>
               </LinkContainer>
               <NavIcon>
                   <NavLinks>

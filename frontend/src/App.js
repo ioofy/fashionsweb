@@ -10,6 +10,7 @@ import Profile from './Components/pages/Profile';
 import Shipping from './Components/pages/Shipping';
 import Payment from './Components/pages/Payment';
 import PlaceOrder from './Components/pages/PlaceOrder';
+import Order from './Components/pages/Order';
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path='/cart/:id?' component={Cart}/>
         <Route path='/shipping' component={Shipping}/>
         <Route path='/payment' component={Payment}/>
+        <Route path='/order/:id' component={Order}/>
         <Route path='/placeorder' component={PlaceOrder}/>
         <Route path='/' component={Home} exact/>
     </Router>

@@ -1,16 +1,17 @@
 import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import '../../style/index.css'
 
 const CheckoutSteps = ({step1, step2, step3, step4}) => {
     return (
         <>
-            <Nav className='justify-content-center mb-4'>
+            <Nav className='justify-content-center mb-4 mt-4'>
                 <Nav.Item>
                     {step1 ? (
                         <LinkContainer to='/login'>
                             <Nav.Link>
-                             ✔️Sign In
+                             ✔️ Sign In
                             </Nav.Link>
                         </LinkContainer>
                     ): <Nav.Link disabled>❌Sign In</Nav.Link>}
@@ -20,7 +21,7 @@ const CheckoutSteps = ({step1, step2, step3, step4}) => {
                     {step2 ? (
                         <LinkContainer to='/shipping'>
                             <Nav.Link>
-                            ✔️Shipping
+                            ✔️ Shipping
                             </Nav.Link>
                         </LinkContainer>
                     ): <Nav.Link disabled>❌Shipping</Nav.Link>}
@@ -30,7 +31,7 @@ const CheckoutSteps = ({step1, step2, step3, step4}) => {
                     {step3 ? (
                         <LinkContainer to='/payment'>
                             <Nav.Link>
-                            ✔️Payment
+                            ✔️ Payment
                             </Nav.Link>
                         </LinkContainer>
                     ): <Nav.Link disabled>❌Payment</Nav.Link>}
@@ -40,7 +41,7 @@ const CheckoutSteps = ({step1, step2, step3, step4}) => {
                     {step4 ? (
                         <LinkContainer to='/placeorder'>
                             <Nav.Link>
-                            ✔️Place Order
+                            ✔️ Place Order
                             </Nav.Link>
                         </LinkContainer>
                     ): <Nav.Link disabled>❌Place Order</Nav.Link>}

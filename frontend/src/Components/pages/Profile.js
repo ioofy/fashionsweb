@@ -9,7 +9,7 @@ import Navbar from '../Navbar/Navbar'
 import Announcement from '../Stuff/Announcement'
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import NavbarBottom from '../Navbar/NavbarBottom'
-import {FiBox,FiUser} from "react-icons/fi"
+import { FiBox,FiUser } from "react-icons/fi"
 import '../../style/index.css'
 
 const Profile = ( ) => {

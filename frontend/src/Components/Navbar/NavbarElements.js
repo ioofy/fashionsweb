@@ -29,7 +29,7 @@ export const NavbarContainer = styled.div`
 `
 
 export const NavLogo = styled.a`
-    color: #111;
+    color: ${({active}) => active ? "#E52165" : "#0D1137"};
     justify-self: flex-start;
     text-decoration: none;
     font-size: 2rem;
@@ -42,7 +42,7 @@ export const NavLogo = styled.a`
     }
 
     &:hover{
-        color: #FF95C5;
+        color: ${({active}) => active ? "#0D1137" : "#FF95C5"};
     }
 `
 

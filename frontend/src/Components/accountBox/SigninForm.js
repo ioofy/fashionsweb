@@ -27,6 +27,10 @@ const LoginForm = ( { location } ) => {
             window.location.reload()
         }
     }, [history, userInfo, redirect])
+
+    useEffect(() => {
+        document.title = "Login untuk mulai mencari produk favorit kamu sekarang juga!"
+      }, [])
     
     const submitHandler = (e) => {
         e.preventDefault()

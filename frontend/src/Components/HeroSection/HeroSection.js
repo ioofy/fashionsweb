@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Button = styled.button`
     width: 8rem;
     background-color: #253F3F;
-    height: 2.8rem;
+    height: 3rem;
     overflow: hidden;
     border: none;
     font-family: 'Favfont';

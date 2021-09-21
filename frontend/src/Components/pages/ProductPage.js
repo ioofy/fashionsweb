@@ -49,6 +49,7 @@ const ButtonBack = styled.button`
   border: none;
   background-color: #111;
   color: white;
+  box-shadow: 4px 4px #FFB830;
 
   @media screen and (max-width: 1024px){
       margin-left: 20px;
@@ -210,6 +211,7 @@ const ButtonCart = styled.button`
   justify-content: center;
   border: none;
   background: orange;
+  box-shadow: 5px 5px #5E454B;
 `
 
 // THIS GONNA BE PRODUCT PAGE
@@ -235,22 +237,10 @@ const ProductPage = ({ history, match }) => {
 
   }, [dispatch, match])
 
-  // useEffect(() => {
-
-  //   // memilih local storage value
-  //   const currentColor = localStorage.getItem('colors');
-    
-  //   if(currentColor) {
-  //     setColor(currentColor);
-  //   }
-
-  // }, [])
-
-  // // Memilih warna tapi optional lain waktu akan diupdate
-  // const handleClick = (color) => {
-  //     setColor(color);
-  //     localStorage.setItem('colors', color)
-  // }
+  
+  useEffect(() => {
+    document.title = "Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
+  }, [])
   
 
 

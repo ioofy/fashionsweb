@@ -35,6 +35,10 @@ body{
   box-sizing: border-box;
 }
 
+.nav-item .nav-link{
+  font-weight: bold;
+  font-size: 16px;
+}
 
 .container .group{
   background-color: transparent;
@@ -43,7 +47,12 @@ body{
 }
 
 .container .product-image{
-  margin-top: -18px;
+  margin-top: -2px;
+}
+
+.container .product-imagecart{
+  margin-top: -6px;
+  margin-bottom: 10px;
 }
 
 .container .product-name,.container .product-price, .container .product-form{
@@ -67,10 +76,48 @@ body{
   font-size: 19px;
 }
 
+.container .product-item{
+  margin-top: 5px;
+}
+.container .product-items{
+  margin-top: 25px;
+}
+
+.container .product-item a{
+  font-weight: bold;
+  text-decoration: none;
+  color: #111;
+  font-size: 18px;
+}
+
+.container .product-items a{
+  font-weight: bold;
+  color: #111;
+  font-size: 18px;
+}
+
+.container .product-items a:hover{
+  color: #38A3A5;
+}
+
 .container .product-price {
   font-family: 'JetBrains Mono';
   font-size: 14px;
   font-weight: bold;
+}
+
+.container .product-prices{
+  font-family: 'JetBrains Mono';
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+
+.container .product-pricepay{
+  font-family: 'JetBrains Mono';
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 1px;
 }
 
 
@@ -89,17 +136,42 @@ body{
   background-color: #F9F2EE;
 }
 
+.container .group-placeorder{
+  background-color: #F9F2EE;
+}
+
 .container .group-checkout button{
+  outline: none;
+  border: none;
+  height: 50px;
+  background-color: #38A3A5;
+  font-weight: bold;
+  box-shadow: 7px 8px #111;
+  font-size: 17px;
+  border-radius: 6px;
+  font-family: "JetBrains Mono";
+}
+
+.container .group-placeorder button{
   outline: none;
   border: none;
   background-color: #38A3A5;
   font-weight: bold;
+  box-shadow: 5px 5px #111;
+  height: 52px;
   font-size: 17px;
   font-family: "JetBrains Mono";
+  border-radius: 6px;
 }
 
 .container .group-checkout button:hover{
   background-color: #112031;
+  box-shadow: 7px 8px #38A3A5;
+}
+
+.container .group-placeorder button:hover{
+  background-color: #112031;
+  box-shadow: 7px 8px #38A3A5;
 }
 
 .container .group-checkout h2{
@@ -118,17 +190,40 @@ body{
   margin: 0px 0px 10px;
   background: #EFEFEF;
   font-weight: bold;
+  font-size: 16px;
   color: #111;
-  border: 1px solid rgba(200, 200, 200, 0.3);;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.shipping-container input{
+  margin: 0px 0px 10px;
+  background: #EFEFEF;
+  font-weight: bold;
+  font-size: 16px;
+  color: #111;
+  border: 1px solid rgba(200, 200, 200, 0.3);
 }
 
 .profile-container input::placeholder{
   font-weight: bold;
+  font-size: 16px;
+}
+
+.shipping-container input::placeholder{
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .profile-container input:focus{
   background: #EFEFEF;
   font-weight: bold;
+  font-size: 16px;
+}
+
+.shipping-container input:focus{
+  background: #EFEFEF;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .profile-container .profile button{
@@ -141,18 +236,56 @@ body{
   border-radius: 2px;
 }
 
+.shipping-container .shipping button{
+  margin: 15px 0px 30px;
+  font-size: 17px;
+  background-color: #111;
+  border: none;
+  width: 110px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.payment-container .payment button{
+  margin: 20px 0px 30px;
+  font-size: 17px;
+  background-color: #111;
+  border: none;
+  width: 110px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+
+.payment label{
+  margin-top: 3px;
+  font-weight: bold;
+}
+
 .profile-container{
   margin-top: 50px;
 }
 
+.container .order-ref{
+  font-size: 28px;
+  font-family: 'JetBrains Mono';
+  margin: 20px 0px;
+}
 
 @media screen and (max-width: 1024px){
   .container .product-name,.container .product-price, .container .product-form{
-    margin-top: 0px;
+    margin-top: 1px;
   }
 
   .container .trash-btn{
     margin-top: -3px;
+  }
+
+  .container .product-items{
+    margin-top: 10px;
+  }
+
+  .container .product-prices{
+    margin-top: 10px;
   }
 }
 
@@ -173,7 +306,7 @@ body{
 
   .container .product-price {
     font-size: 12px;
-    margin-top: 1px;
+    margin-top: 3px;
   }
 
   .container .product-name a{
@@ -190,6 +323,14 @@ body{
   
   .container .group-checkout h5{
     font-size: 15px;
+  }
+
+  .container .product-pricepay{
+    font-size: 11px;
+  }
+
+  .container .group-placeorder button{
+    font-size: 14px;
   }
 }
 
@@ -228,10 +369,36 @@ body{
   .container .group-checkout button{
     font-size: 17px;
   }
+
+  .container .product-pricepay{
+    font-size: 14px;
+  }
+
+  .container .group-placeorder button{
+    font-size: 18px;
+  }
+
+  .container .order-ref{
+    font-size: 19.5px;
+  }
 }
 
 @media screen and (max-width: 414px){
   .profile-container{
     height: 750px;
+  }
+}
+
+@media screen and (max-width: 280px){
+  .container .product-pricepay{
+    font-size: 11.5px;
+  }
+
+  .container .group-checkout button{
+    font-size: 15px;
+  }
+
+  .container .order-ref{
+    font-size: 17px;
   }
 }

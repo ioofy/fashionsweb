@@ -48,6 +48,10 @@ const SignupForm = ({ location }) => {
 
     const { switchToSignin } = useContext(AccountContext)
 
+    useEffect(() => {
+        document.title = "Daftar untuk mulai mencari fashion favorit anda sekarang juga!"
+      }, [])
+
     return(
             <BoxContainer>
             {message && 

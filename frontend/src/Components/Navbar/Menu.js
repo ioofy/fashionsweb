@@ -14,7 +14,8 @@ const Menu = () => {
     const { userInfo } = userLogin
 
     const logoutHandler = () => {
-      dispatch(logout())
+      dispatch(logout());
+      window.location.reload()
     }
 
     return (

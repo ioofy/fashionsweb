@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from '@emotion/styled'
 import Navbar from '../Navbar/Navbar'
 import NavbarBottom from '../Navbar/NavbarBottom'
@@ -78,6 +78,10 @@ const Title = styled.h1`
 // `
 
 const ProductList = () => {
+    useEffect(() => {
+        document.title = "Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
+      }, [])
+      
     return (
     <>
         <Navbar />

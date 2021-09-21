@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
 import Menu from '../Navbar/Menu'
@@ -33,7 +33,9 @@ const TextInfoCloth = styled.h1`
 
 
 const Home = () => {
-
+  useEffect(() => {
+    document.title = "Fashions | Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
+  }, [])
     return (
       <>
           <Announcement/>

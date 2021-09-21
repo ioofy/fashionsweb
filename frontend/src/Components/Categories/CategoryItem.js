@@ -39,7 +39,7 @@ const Button = styled.button`
     border: none;
     padding: 10px;
     width: 8rem;
-    height: 2.4rem;
+    height: 2.5rem;
     border-radius: 25px;
     bacgkround-color: white;
     color: #253F3F;

@@ -1,14 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Container, Form, Button, Row, Col} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Announcement from '../Stuff/Announcement'
 import CheckoutSteps from '../Stuff/CheckoutSteps'
-import {FaShippingFast} from 'react-icons/fa'
+import { FaShippingFast } from 'react-icons/fa'
 import { saveShippingAddress } from '../../actions/cartActions'
+import '../../style/index.css'
 
 const Shipping = ({ history }) => {
-    const cart = useSelector(state => state.cart)
+    const cart = useSelector((state) => state.cart)
     const { shippingAddress } = cart
 
     const [address, setAddress] = useState(shippingAddress.address)
@@ -24,20 +25,24 @@ const Shipping = ({ history }) => {
         history.push('/payment')
     }
 
+    useEffect(() => {
+        document.title = "Isi alamat pengirimanmu"
+      }, [])
+
     return (
         <>
             <Navbar/>
             <Announcement/>
-            <Container>
+            <Container className="shipping-container">
                 <CheckoutSteps step1 step2/>
                 <Row>
                 <Col md={4}>
                     <h2 style={{fontWeight: 'bold'}}><FaShippingFast style={{margin: '-5px 10px 0px 0px'}} />Shipping Address</h2>
-                    <Form onSubmit={submitHandler}>
+                    <Form onSubmit={submitHandler} className="shipping">
                         <Form.Group controlId='address'>
                             <Form.Label>Your Address</Form.Label>
                             <Form.Control
-                                type='address'
+                                type='text'
                                 placeholder='Enter your address'
                                 value={address}
                                 required
@@ -48,7 +53,7 @@ const Shipping = ({ history }) => {
                         <Form.Group controlId='city'>
                             <Form.Label>Your City</Form.Label>
                             <Form.Control
-                                type='city'
+                                type='text'
                                 placeholder='Enter your City'
                                 value={city}
                                 required
@@ -59,8 +64,8 @@ const Shipping = ({ history }) => {
                         <Form.Group controlId='province'>
                             <Form.Label>Your Province</Form.Label>
                             <Form.Control
-                                type='province'
-                                placeholder='Enter you province'
+                                type='text'
+                                placeholder='Enter your province'
                                 value={province}
                                 required
                                 onChange={(e) => setProvince(e.target.value)}
@@ -70,14 +75,13 @@ const Shipping = ({ history }) => {
                         <Form.Group controlId='postalCode'>
                             <Form.Label>Your Postal Code</Form.Label>
                             <Form.Control
-                                type='postalCode'
-                                placeholder='Enter you Postal Code'
+                                type='text'
+                                placeholder='Enter your Postal Code'
                                 value={postalCode}
                                 required
                                 onChange={(e) => setPostalCode(e.target.value)}
                             ></Form.Control>
                         </Form.Group>
-
                         <Button type='submit'>Continue</Button>
                     </Form>
                 </Col>

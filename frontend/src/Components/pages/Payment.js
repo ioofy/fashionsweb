@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Container, Form, Button, Col} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,9 +6,10 @@ import Announcement from '../Stuff/Announcement'
 import CheckoutSteps from '../Stuff/CheckoutSteps'
 import {MdPayment} from 'react-icons/md'
 import { savePaymentMethod } from '../../actions/cartActions'
+import '../../style/index.css'
 
 const Payment = ({ history }) => {
-    const cart = useSelector(state => state.cart)
+    const cart = useSelector((state) => state.cart)
     const { shippingAddress } = cart
 
     if(!shippingAddress){
@@ -25,14 +26,18 @@ const Payment = ({ history }) => {
         history.push('/placeorder')
     }
 
+    useEffect(() => {
+        document.title = "Pilih metode pembayaranmu"
+      }, [])
+
     return (
         <>
             <Navbar/>
             <Announcement/>
-            <Container>
+            <Container className="payment-container">
                 <CheckoutSteps step1 step2 step3 />
                     <h2 style={{fontWeight: 'bold'}}><MdPayment style={{margin: '-5px 10px 0px 0px'}} />Payment Method</h2>
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler} className="payment">
                 <Form.Group>
                 <Col>
                     <Form.Check
@@ -44,7 +49,7 @@ const Payment = ({ history }) => {
                     checked
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     ></Form.Check>
-                    <Form.Check
+                    {/* <Form.Check
                     type='radio'
                     label='OVO'
                     id='OVO'
@@ -59,11 +64,12 @@ const Payment = ({ history }) => {
                     name='paymentMethod'
                     value='DANA'
                     onChange={(e) => setPaymentMethod(e.target.value)}
-                    ></Form.Check>
+                    ></Form.Check> */}
+                    
                 </Col>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
+                <Button type='submit'>
                 Continue
                 </Button>
             </Form>

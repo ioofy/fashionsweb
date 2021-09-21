@@ -33,6 +33,7 @@ const ButtonBack = styled.button`
   border: none;
   background-color: #111;
   color: white;
+  box-shadow: 4px 4px #FFB830;
 
   @media screen and (max-width: 1024px){
       margin-left: 1px;
@@ -42,7 +43,7 @@ const ButtonBack = styled.button`
 const Cart = ({ match, location, history }) => {
     
     const productId = match.params.id
-    const userLogin = useSelector(state => state.userLogin)
+    const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch()
@@ -63,6 +64,10 @@ const Cart = ({ match, location, history }) => {
       const checkoutHandler = () => {
            userInfo ? history.push('/shipping') : history.push('/login?redirect=')
       }
+
+      useEffect(() => {
+        document.title = "Keranjang tasmu | ayo checkout sekarang untuk mendapatkan produkmu"
+      }, [])
     
     return (
         <>
@@ -93,7 +98,7 @@ const Cart = ({ match, location, history }) => {
                                     <ListGroup.Item key={item.product} className="group">
                                         <Row>
                                             <Col md={2}>
-                                                <Image src={item.image} alt={item.name} fluid rounded className="product-image"/>
+                                                <Image src={item.image} alt={item.name} fluid rounded className="product-imagecart"/>
                                             </Col>
                                             <Col md={3} className="product-name">
                                                 <Link to={`/products/item/${item.product}`} >{item.name}</Link>

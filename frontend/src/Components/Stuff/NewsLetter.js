@@ -20,7 +20,7 @@ const Container = styled.div`
     }
 
     @media screen and (max-width: 540px){
-        height: 40vh;
+        height: 45vh;
     }
 `
 
@@ -53,16 +53,12 @@ const Description = styled.div`
         font-size: 22px;
     }
 
-    @media screen and (max-width: 414px){
-        font-size: 18px;
-    }
-
     @media screen and (max-width: 540px){
-        font-size: 20px;
+        font-size: 22px;
     }
 
-    @media screen and (max-width: 320px){
-        font-size: 18px;
+    @media screen and (max-width: 375px){
+        font-size: 20px;
     }
 `
 
