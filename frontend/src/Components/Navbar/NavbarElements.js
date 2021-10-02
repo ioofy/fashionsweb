@@ -29,7 +29,7 @@ export const NavbarContainer = styled.div`
 `
 
 export const NavLogo = styled.a`
-    color: ${({active}) => active ? "#E52165" : "#0D1137"};
+    color: ${({active}) => active ? "#DF2E2E" : "#0D1137"};
     justify-self: flex-start;
     text-decoration: none;
     font-size: 2rem;

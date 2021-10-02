@@ -33,6 +33,7 @@ const ButtonBack = styled.button`
   border: none;
   background-color: #111;
   color: white;
+  border-radius: 5px;
   box-shadow: 4px 4px #FFB830;
 
   @media screen and (max-width: 1024px){
@@ -62,11 +63,11 @@ const Cart = ({ match, location, history }) => {
       }
 
       const checkoutHandler = () => {
-           userInfo ? history.push('/shipping') : history.push('/login?redirect=')
+           userInfo ? history.push('/shipping') : history.push('/login/accountcontext=register/auth/lang=en/redirect=none')
       }
 
       useEffect(() => {
-        document.title = "Keranjang tasmu | ayo checkout sekarang untuk mendapatkan produkmu"
+        document.title = "Keranjang tasmu | Ayo checkout sekarang untuk mendapatkan produkmu"
       }, [])
     
     return (
@@ -103,7 +104,7 @@ const Cart = ({ match, location, history }) => {
                                             <Col md={3} className="product-name">
                                                 <Link to={`/products/item/${item.product}`} >{item.name}</Link>
                                             </Col>
-                                            <Col md={3} className="product-price">{item.price.toLocaleString('id', { style: 'currency', currency: 'IDR' })}</Col>
+                                            <Col md={3} className="product-price">${item.price},00</Col>
                                             <Col md={2}>
                                             <Form as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))} className="product-form">
                                                 {
@@ -131,7 +132,7 @@ const Cart = ({ match, location, history }) => {
                                 <ListGroup variant="flush">
                                     <ListGroup.Item className="group-checkout">
                                         <h2>SUBTOTAL ({cartItems.reduce((acc, item) => acc + item.qty, 0 )}) ITEMS</h2>
-                                        <h5>{cartItems.reduce((acc, item) => acc + item.qty * item.price , 0).toLocaleString('id', { style: 'currency', currency: 'IDR' })}</h5>
+                                        <h5>${cartItems.reduce((acc, item) => acc + item.qty * item.price , 0)},00</h5>
                                     </ListGroup.Item>
                                     <ListGroup.Item className="group-checkout">
                                         <Button type='button' className='btn-black' disabled={cartItems.length === 0} onClick={checkoutHandler}>PROCEED TO CHECKOUT</Button>

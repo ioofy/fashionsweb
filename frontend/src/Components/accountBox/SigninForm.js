@@ -29,7 +29,7 @@ const LoginForm = ( { location } ) => {
     }, [history, userInfo, redirect])
 
     useEffect(() => {
-        document.title = "Login untuk mulai mencari produk favorit kamu sekarang juga!"
+        document.title = "Login sekarang untuk mulai mencari produk favorit kamu sekarang juga!"
       }, [])
     
     const submitHandler = (e) => {
@@ -54,11 +54,11 @@ const LoginForm = ( { location } ) => {
                     onChange={(e) => setPassword(e.target.value)} required/>
 
                     <MutedLink type="right">Forget your password?</MutedLink>
-                    <SubmitButton type="submit">Sign In</SubmitButton>
+                    <SubmitButton type="submit">Login</SubmitButton>
                     <Marginer direction="vertical" margin="0.5em" />
                 </FormContainer>
                     <MutedLink>Didn't have an account? 
-                        <BoldLink onClick={switchToSignup}>
+                        <BoldLink onClick={switchToSignup} style={{marginLeft: '5px'}}>
                             Register
                         </BoldLink>
                     </MutedLink>

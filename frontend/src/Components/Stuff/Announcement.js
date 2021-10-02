@@ -4,7 +4,7 @@ import styled from '@emotion/styled'
 const Container = styled.div
 `
     display: flex;
-    height: 50px;
+    height: 60px;
     background-color: teal;
     color: white;
     font-size: 1.2rem;
@@ -21,7 +21,7 @@ const Container = styled.div
     }
 
     @media screen and (max-width: 375px){
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
 `
@@ -30,7 +30,7 @@ const Container = styled.div
 const Announcement = () => {
     return (
         <Container>
-            🎉 Super Deal! Free shipping on orders overs IDR 720k. Get it now!
+            🎉 Super Deal! Free shipping on orders overs $500. Get it now!
         </Container>
     )
 }

@@ -42,7 +42,7 @@ const Container = styled.div`
     }
 
     @media(max-width: 1024px){
-        width: 205px;
+        width: 220px;
     }
 
     @media screen and (max-width: 768px){
@@ -50,6 +50,10 @@ const Container = styled.div`
     }
 
     @media screen and (max-width: 600px){
+        width: 250px;
+    }
+
+    @media screen and (max-width: 540px){
         width: 220px;
     }
 
@@ -115,6 +119,18 @@ const TextInfo = styled.h1`
     position: absolute;
     left: 0;
     margin-left: 1px;
+
+    @media screen and (max-width: 1024px){
+        font-size: 1rem;
+    }
+
+    @media screen and (max-width: 600px){
+        font-size: 1.1rem;
+    }
+
+    @media screen and (max-width: 414px){
+        font-size: 1.2rem;
+    }
 `
 
 
@@ -153,7 +169,7 @@ const Product = ( { product } ) => {
                            <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px' /> 
                         </RatingInfo>
                         <PriceInfo>
-                            {product.price.toLocaleString('id', { style: 'currency', currency: 'IDR' })}
+                            ${product.price},00
                         </PriceInfo>
                         <Icon>
                             <Link to='/wishlist'><FavoriteBorderOutlinedIcon style={{color: '#FF6B6B'}}/></Link>

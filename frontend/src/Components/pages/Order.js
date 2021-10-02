@@ -2,12 +2,11 @@ import React, { useState, useEffect }from 'react'
 import axios from 'axios'
 import { PayPalButton } from 'react-paypal-button-v2'
 import Navbar from '../Navbar/Navbar'
-import { Row, Col, ListGroup, Container, Image, Card, Button} from 'react-bootstrap'
+import { Row, Col, ListGroup, Container, Image, Card} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../Stuff/Message'
 import Loader from '../Stuff/Loader'
-import '../../style/index.css'
 import { GrPaypal } from 'react-icons/gr'
 import { MdPayment } from 'react-icons/md'
 import { FaShippingFast } from 'react-icons/fa'
@@ -17,6 +16,7 @@ import NavbarBottom from '../Navbar/NavbarBottom'
 import NewsLetter from '../Stuff/NewsLetter'
 import { getOrderDetails, payOrder } from '../../actions/orderActions'
 import { ORDER_PAY_RESET } from '../../constants/orderConstants'
+import '../../style/index.css'
 
 
 const Order = ({ match }) => {
@@ -37,7 +37,6 @@ const Order = ({ match }) => {
     }
 
     useEffect(() => {
-
         const addPayPalScript = async () => {
             const { data: clientId } = await axios.get('/api/config/paypal')
             const script = document.createElement('script')
@@ -51,8 +50,10 @@ const Order = ({ match }) => {
           }
 
         if(!order || succesPay) {
+
             dispatch({ type: ORDER_PAY_RESET })
             dispatch(getOrderDetails(orderId))
+
         } else if(!order.isPaid) {
             if(!window.paypal){
                 addPayPalScript()
@@ -128,7 +129,7 @@ const Order = ({ match }) => {
                                                                     </Link>
                                                                 </Col>
                                                                 <Col className="product-prices">
-                                                                    {item.qty} x {item.price.toLocaleString('id', { style: 'currency', currency: 'IDR' })}
+                                                                    {item.qty} x ${item.price},00
                                                                 </Col>
             
                                                             </Row>
@@ -148,24 +149,24 @@ const Order = ({ match }) => {
                                     <ListGroup.Item className="group-checkout">
                                         <Row style={{fontWeight: 'bold'}}>
                                         <Col className="product-pricepay">Items</Col>
-                                        <Col className="product-pricepay">{order.itemsPrice.toLocaleString('id', { style: 'currency', currency: 'IDR' })}</Col>
+                                        <Col className="product-pricepay">${order.itemsPrice},00</Col>
                                         </Row>
                                     </ListGroup.Item>
                                     <ListGroup.Item className="group-checkout">
                                         <Row style={{fontWeight: 'bold'}}>
                                         <Col className="product-pricepay">Shipping</Col>
-                                        <Col className="product-pricepay">{order.shippingPrice === 0 && <div>Free</div>}</Col>
+                                        <Col className="product-pricepay">${order.shippingPrice},00</Col>
                                         </Row>
                                     </ListGroup.Item>
                                     <ListGroup.Item className="group-checkout">
                                         <Row style={{fontWeight: 'bold'}}>
                                         <Col className="product-pricepay">Total</Col>
-                                        <Col className="product-pricepay">{order.totalPrice.toLocaleString('id', { style: 'currency', currency: 'IDR' })}</Col>
+                                        <Col className="product-pricepay">${order.totalPrice},00</Col>
                                         </Row>
                                     </ListGroup.Item>
                                     {!order.isPaid && (
                                         <ListGroup.Item className="group-checkout">
-                                        {loadingPay && <Loader />}
+                                        {loadingPay && <Loader margin='0px auto' />}
                                         {!sdkReady ? (
                                             <Loader />
                                         ) : (
@@ -183,7 +184,7 @@ const Order = ({ match }) => {
                         </Container>
                             <NewsLetter/>
                                 <Footer/>
-                        <NavbarBottom/>
+                                    <NavbarBottom/>
         </>
     )
 }

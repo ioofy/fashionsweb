@@ -20,7 +20,7 @@ const SignupForm = ({ location }) => {
     const userRegister = useSelector((state) => state.userRegister)
     const { loading, error, userInfo } = userRegister
 
-    const redirect = location?.search ? location?.search.split('=')[1] : "/login?"
+    const redirect = location?.search ? location?.search.split('=')[1] : "/login/accountcontext=register/auth/lang=en"
 
     useEffect(() => {
         if(userInfo) {
@@ -49,7 +49,7 @@ const SignupForm = ({ location }) => {
     const { switchToSignin } = useContext(AccountContext)
 
     useEffect(() => {
-        document.title = "Daftar untuk mulai mencari fashion favorit anda sekarang juga!"
+        document.title = "Daftar sekarang untuk mulai mencari fashion favorit anda sekarang juga!"
       }, [])
 
     return(
@@ -76,7 +76,7 @@ const SignupForm = ({ location }) => {
                     <Marginer direction="vertical" margin="1em" />
                     <SubmitButton type="submit">Register</SubmitButton>
                 </FormContainer>
-                    <MutedLink>Already have an account? <BoldLink onClick={switchToSignin} >Sign in</BoldLink></MutedLink>
+                    <MutedLink>Already have an account? <BoldLink onClick={switchToSignin}>Sign in</BoldLink></MutedLink>
             </BoxContainer>
        
     )

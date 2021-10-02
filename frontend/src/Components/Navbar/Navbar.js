@@ -23,11 +23,11 @@ const Navbar = () => {
   }
 
   useEffect(() => {
-    changeNav( );
+    changeNav();
     return () => {
       setState({}); // This worked for me
     };
-}, []);
+}, [state]);
 
   useEffect(() => {
     changeNav();

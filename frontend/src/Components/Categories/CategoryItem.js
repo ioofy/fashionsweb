@@ -61,7 +61,7 @@ const Container = styled.div
 
     @media screen and (max-width: 1024px){
         margin: 50px 0px;
-        height: 50vh;
+        height: 60vh;
         transform: scale(75%);
     }
 

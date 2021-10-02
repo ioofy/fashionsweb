@@ -23,7 +23,7 @@ const PlaceOrder = ({ history }) => {
 
     // calculate prices
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    cart.shippingPrice = cart.itemsPrice <= 250000 ? 50000 : 0
+    cart.shippingPrice = cart.itemsPrice <= 500 ? 20 : 0
     cart.totalPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
 
     const orderCreate = useSelector((state) => state.orderCreate)
@@ -66,7 +66,7 @@ const PlaceOrder = ({ history }) => {
                                 <h2 style={{fontWeight: 'bold', marginBottom: '20px'}}><FaShippingFast style={{margin: '-5px 10px 0px 0px'}} />Shipping Address</h2>
                                 <p>
                                     <strong>Your Address : </strong>
-                                    {cart.shippingAddress.address}, {cart.shippingAddress.city}
+                                    {cart.shippingAddress.address}, {cart.shippingAddress.city} {' '}
                                     {cart.shippingAddress.province}, {cart.shippingAddress.postalCode}
                                 </p>
                             </ListGroup.Item>
@@ -93,7 +93,7 @@ const PlaceOrder = ({ history }) => {
                                                         </Link>
                                                     </Col>
                                                     <Col className="product-prices">
-                                                        {item.qty} x {item.price.toLocaleString('id', { style: 'currency', currency: 'IDR' })}
+                                                        {item.qty} x ${item.price},00
                                                     </Col>
   
                                                 </Row>
@@ -113,19 +113,19 @@ const PlaceOrder = ({ history }) => {
                         <ListGroup.Item className="group-checkout">
                             <Row style={{fontWeight: 'bold'}}>
                             <Col className="product-pricepay">Items</Col>
-                            <Col className="product-pricepay">{cart.itemsPrice.toLocaleString('id', { style: 'currency', currency: 'IDR' })}</Col>
+                            <Col className="product-pricepay">${cart.itemsPrice},00</Col>
                             </Row>
                         </ListGroup.Item>
                         <ListGroup.Item className="group-checkout">
                             <Row style={{fontWeight: 'bold'}}>
                             <Col className="product-pricepay">Shipping</Col>
-                            <Col className="product-pricepay">{cart.shippingPrice === 0 && <div>Free</div>}</Col>
+                            <Col className="product-pricepay">${cart.shippingPrice},00</Col>
                             </Row>
                         </ListGroup.Item>
                         <ListGroup.Item className="group-checkout">
                             <Row style={{fontWeight: 'bold'}}>
                             <Col className="product-pricepay">Total</Col>
-                            <Col className="product-pricepay">{cart.totalPrice.toLocaleString('id', { style: 'currency', currency: 'IDR' })}</Col>
+                            <Col className="product-pricepay">${cart.totalPrice},00</Col>
                             </Row>
                         </ListGroup.Item>
                         <ListGroup.Item className="group-checkout">

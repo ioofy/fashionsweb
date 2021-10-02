@@ -8,10 +8,11 @@ import Footer from "../Footer/Footer";
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import NewsLetter from "../Stuff/NewsLetter";
 import { useDispatch, useSelector } from "react-redux";
-import { listProductsDetails } from "../../actions/productActions";
+import { listProductsDetails, createProductReview } from "../../actions/productActions";
 import Loader from "../Stuff/Loader";
 import Message from "../Stuff/Message";
-import { Form } from "react-bootstrap";
+import { Col, Form, Row, ListGroup, Button } from "react-bootstrap";
+import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const ButtonBack = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 5px;
   border: none;
   background-color: #111;
   color: white;
@@ -210,38 +212,149 @@ const ButtonCart = styled.button`
   align-items: center;
   justify-content: center;
   border: none;
+  border-radius: 5px;
   background: orange;
   box-shadow: 5px 5px #5E454B;
 `
 
-// THIS GONNA BE PRODUCT PAGE
+const Testimonials = styled.section`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
 
+const TestimonialsHeading = styled.div`
+  letter-spacing: 1px;
+  margin: 30px 0px;
+  padding: 10px 1px;
+  display: flex;
+  flext-direction: column;
+`
+
+const TextInfo = styled.h2`
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #202020;
+  color: #fff;
+  padding: 10px; 20px
+`
+
+const TestimonialsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`
+
+const TestimonialsBox = styled.div`
+  width: 500px;
+  box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+  background-color: #FEFBF3;
+  padding: 20px;
+  margin-top: -15px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+
+  &:hover{
+    transform: translateY(-10px);
+    transition: all ease 0.3s;
+  }
+
+  @media(max-width: 848px){
+    padding: 10px;
+    width: 345px;
+  }
+
+  @media(max-width:280px){
+    width: 245px;
+  }
+
+  @media(max-width:360px){
+    width: 288px;
+  }
+
+`
+
+const BoxTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+`
+
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+`
+const Username = styled.div`
+  display: flex;
+  font-size: 20px;
+`
+
+const Ratings = styled.div`
+  color: #f9d71c;
+`
+
+const Reviews = styled.div`
+  color: #4b4b4b;
+`
+
+const Content = styled.p`
+  font-size: 1.1rem;
+  font-weight: bold;
+`
+
+const DateContent = styled.p`
+  font-size: 1.1rem;
+  margin-top: -20px;
+`
+
+// THIS GONNA BE PRODUCT PAGE
 const ProductPage = ({ history, match }) => {
 
   const [sizeS, setSizes] = useState(37);
   const [size, setSize] = useState('S');
   const [qty, setQty] = useState(1);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const dispatch = useDispatch();
   const productDetails = useSelector(state => state.productDetails);
   const { loading, error, product } = productDetails
+
+  const productReviewCreate = useSelector(state => state.productReviewCreate);
+  const { success:successProductReview, error:errorProductReview } = productReviewCreate
+  
+  const userLogin = useSelector(state => state.userLogin);
+  const { userInfo } = userLogin
 
   const addToCart = () => {
     //bukan sneaker
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   }
 
-  useEffect(() => {
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(createProductReview(match.params.id, {
+      rating,
+      comment,
+    }))
+    console.log('ok')
+  }
 
+  useEffect(() => {
+    if(successProductReview){
+      setRating(0)
+      setComment('')
+      dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+    }
     dispatch(listProductsDetails(match.params.id))
 
-  }, [dispatch, match])
-
+  }, [dispatch, match, successProductReview])
+  
   
   useEffect(() => {
     document.title = "Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
   }, [])
-  
 
 
   return (
@@ -269,7 +382,7 @@ const ProductPage = ({ history, match }) => {
                   <InfoContainer>
                     <Title>{product.name}</Title>
                     <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
-                    <Price>Rp {product.price},00</Price>
+                    <Price>${product.price},00</Price>
                     <Description>{product.description}</Description>
                     <Status> Avaliable : {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Status>
                     <Status style={{marginTop: '15px'}}>Brand : {product.brand}</Status>
@@ -325,9 +438,79 @@ const ProductPage = ({ history, match }) => {
                           <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
                           ADD TO BAG
                       </ButtonCart>
-
                   </InfoContainer>
             </Wrapper>
+
+            <Row>
+              <Col md={5}>
+                <ListGroup.Item style={{marginTop: '50px'}} className="group">
+                  <h2 style={{fontWeight:'bold'}}>Write a Customer Review</h2>
+                  {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
+                  {userInfo ? (
+                    <Form onSubmit={submitHandler}>
+                      <Form.Group controlId='rating'>
+                        <Form.Label>Rating</Form.Label>
+                        <Form.Control as='select' value={rating} onChange={(e) => 
+                          setRating(e.target.value)}>
+                            <option value="">Select...</option>
+                            <option value="1">1 - Poor</option>
+                            <option value="2">2 - Fair</option>
+                            <option value="3">3 - Good</option>
+                            <option value="4">4 - Very Good</option>
+                            <option value="5">5 - Excellent</option>
+                          </Form.Control>
+                      </Form.Group>
+                      <Form.Group controlId='comment'>
+                          <Form.Label>Comment</Form.Label>
+                          <Form.Control
+                          as="textarea" aria-label="With textarea"
+                          type='text'
+                          placeholder='Enter the description'
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
+                           ></Form.Control>
+                      </Form.Group>
+                      <Button type='submit'>
+                          Submit Reviews
+                      </Button>
+                    </Form>
+                  ) : <Message>Please <Link to='/login/accountcontext=register/auth/lang=en'>Login</Link> to write a review</Message>}
+                </ListGroup.Item>
+                <Testimonials>
+                  <TestimonialsHeading>
+                    <TextInfo>
+                      Our Customer Reviews
+                    </TextInfo>
+                  </TestimonialsHeading>
+              </Testimonials>
+              
+              {product.reviews.length === 0 && <Message margin='-20px 0px'>No reviews yet.</Message>}
+              </Col>
+            </Row>
+
+            <TestimonialsContainer>
+              {product.reviews.map(review => (
+                <TestimonialsBox key={review._id}>
+                <BoxTop>
+                  <Profile>
+                    <Username><strong>{review.name}</strong></Username>
+                  </Profile>
+                  <Ratings>
+                    <Rating value={review.rating}/>
+                  </Ratings>
+                </BoxTop>
+                <DateContent>
+                  {review.createdAt.substring(0, 10)}
+                </DateContent>
+                <Reviews>
+                  <Content>
+                    {review.comment}
+                  </Content>
+                </Reviews>
+              </TestimonialsBox>
+              ))}
+            </TestimonialsContainer>
+
       </Container>
     )}
       <NewsLetter/>

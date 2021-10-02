@@ -186,9 +186,10 @@ body{
   font-weight: bold;
 }
 
+
 .profile-container input{
   margin: 0px 0px 10px;
-  background: #EFEFEF;
+  background: #E6E0DC;
   font-weight: bold;
   font-size: 16px;
   color: #111;
@@ -197,7 +198,16 @@ body{
 
 .shipping-container input{
   margin: 0px 0px 10px;
-  background: #EFEFEF;
+  background: #E6E0DC;
+  font-weight: bold;
+  font-size: 16px;
+  color: #111;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+}
+
+.update-container input{
+  margin: 0px 0px 10px;
+  background: #E6E0DC;
   font-weight: bold;
   font-size: 16px;
   color: #111;
@@ -214,47 +224,103 @@ body{
   font-size: 16px;
 }
 
+.update-container input::placeholder{
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .profile-container input:focus{
-  background: #EFEFEF;
+  background: #E6E0DC;
   font-weight: bold;
   font-size: 16px;
 }
 
 .shipping-container input:focus{
-  background: #EFEFEF;
+  background: #E6E0DC;
   font-weight: bold;
   font-size: 16px;
+}
+
+.update-container .update-group textarea{
+  background: #E6E0DC;
+  overflow: hidden;
+  height: 200px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.update-container .update-group input:focus{
+  background: #E6E0DC;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.update-container .checkbox{
+  margin-top: 15px;
+}
+
+.update-container .btn-light{
+  border: none;
+  background-color: #111;
+  box-shadow: 4px 4px #FFB830;
+  color: #fff;
+  font-size: 15px;
+  font-family: 'JetBrains Mono';
+}
+
+.update-container .btn-light:hover{
+  background-color: #111;
+  color: #fff;
 }
 
 .profile-container .profile button{
   margin: 15px 0px 30px;
   font-size: 17px;
+  font-family: 'JetBrains Mono';
   background-color: #111;
   border: none;
-  width: 100px;
+  width: 110px;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 5px;
+  box-shadow: 4px 4px #FFB830;
+}
+
+.update-container .profile button{
+  margin: 15px 0px 30px;
+  font-size: 17px;
+  font-family: 'JetBrains Mono';
+  background-color: #111;
+  border: none;
+  width: 110px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  box-shadow: 4px 4px #FFB830;
 }
 
 .shipping-container .shipping button{
   margin: 15px 0px 30px;
   font-size: 17px;
+  font-family: 'JetBrains Mono';
   background-color: #111;
   border: none;
-  width: 110px;
+  width: 120px;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 5px;
+  box-shadow: 4px 4px #FFB830;
 }
 
 .payment-container .payment button{
   margin: 20px 0px 30px;
   font-size: 17px;
+  font-family: 'JetBrains Mono';
   background-color: #111;
   border: none;
-  width: 110px;
+  width: 120px;
   text-transform: uppercase;
-  border-radius: 2px;
+  border-radius: 5px;
+  box-shadow: 4px 4px #FFB830;
 }
+
 
 .payment label{
   margin-top: 3px;
@@ -264,12 +330,45 @@ body{
 .profile-container{
   margin-top: 50px;
 }
+.update-container{
+  margin-top: 5px;
+}
 
 .container .order-ref{
   font-size: 28px;
   font-family: 'JetBrains Mono';
   margin: 20px 0px;
 }
+
+.container .paypal-button{
+  display: none;
+}
+
+.container td, .container th{
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'JetBrains Mono';
+}
+
+.container .btn-sm{
+  background-color: #38A3A5;
+  color: #fff;
+}
+
+.container .btn-sm:hover{
+  background-color: #111;
+  color: #fff;
+}
+
+.container .delete{
+  background-color: #FF2442;
+}
+
+.container .delete:focus{
+  background-color: #FF2442;
+  color: white;
+}
+
 
 @media screen and (max-width: 1024px){
   .container .product-name,.container .product-price, .container .product-form{
