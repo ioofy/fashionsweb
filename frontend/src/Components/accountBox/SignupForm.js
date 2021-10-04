@@ -7,6 +7,7 @@ import Loader from '../Stuff/Loader'
 import { Marginer } from './marginer'
 import { register } from '../../actions/userActions'
 import { useHistory } from 'react-router-dom'
+import Meta from '../Stuff/Meta'
 
 const SignupForm = ({ location }) => {
 
@@ -48,11 +49,9 @@ const SignupForm = ({ location }) => {
 
     const { switchToSignin } = useContext(AccountContext)
 
-    useEffect(() => {
-        document.title = "Daftar sekarang untuk mulai mencari fashion favorit anda sekarang juga!"
-      }, [])
-
     return(
+        <>
+            <Meta title='Fashions | Daftar sekarang dan mulai mencari produk favoritmu.'/>
             <BoxContainer>
             {message && 
                 <Message variant='danger' width="14rem" height="3.2rem">{message}</Message>
@@ -78,7 +77,7 @@ const SignupForm = ({ location }) => {
                 </FormContainer>
                     <MutedLink>Already have an account? <BoldLink onClick={switchToSignin}>Sign in</BoldLink></MutedLink>
             </BoxContainer>
-       
+       </>
     )
 }
 

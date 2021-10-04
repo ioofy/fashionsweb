@@ -51,10 +51,6 @@ const UserEdit = ({ match }) => {
         dispatch(updateUser({ _id: userId, name, email, isAdmin }))
     }
 
-    useEffect(() => {
-        document.title = "Admin Dashboard | Fashions, Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-    }, [])
-
     return (
         <>
             <Navbar/>

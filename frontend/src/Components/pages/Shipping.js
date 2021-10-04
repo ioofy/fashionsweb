@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Container, Form, Button, Row, Col} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,10 +24,6 @@ const Shipping = ({ history }) => {
         dispatch(saveShippingAddress({ address, city, province, postalCode}))
         history.push('/payment')
     }
-
-    useEffect(() => {
-        document.title = "Isi alamat pengirimanmu"
-      }, [])
 
     return (
         <>

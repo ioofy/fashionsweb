@@ -96,10 +96,6 @@ const ProductEdit = ({ match }) => {
         }
       }
 
-    useEffect(() => {
-        document.title = "Admin Dashboard | Fashions, Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-    }, [])
-
     return (
         <>
             <Navbar/>
@@ -197,7 +193,7 @@ const ProductEdit = ({ match }) => {
                                         ></Form.Control>
                                     </Form.Group>
 
-                                    <Button type='submit' variant='primary' style={{width: '12rem', height: '3.2rem'}}>
+                                    <Button type='submit' variant='primary' style={{width: '12rem', height: '3rem'}}>
                                         Update PRODUCT
                                     </Button>
                                 </Form>

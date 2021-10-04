@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import Navbar from '../Navbar/Navbar'
 import NavbarBottom from '../Navbar/NavbarBottom'
@@ -6,6 +6,8 @@ import Products from '../Products/Products'
 import NewsLetter from '../Stuff/NewsLetter'
 import Footer from '../Footer/Footer'
 import Announcement from '../Stuff/Announcement'
+import ScrollToTop from '../Stuff/ScrollToTop'
+import Meta from '../Stuff/Meta'
 
 const Container = styled.div`
     display: flex;
@@ -78,12 +80,11 @@ const Title = styled.h1`
 // `
 
 const ProductList = () => {
-    useEffect(() => {
-        document.title = "Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-      }, [])
       
     return (
     <>
+        <Meta title='Fashions | Daftar produk'/>
+        <ScrollToTop/>
         <Navbar />
           <Announcement />
             <Container>

@@ -11,7 +11,9 @@ import { useDispatch, useSelector} from 'react-redux'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import { addToCart, removeFromCart } from '../../actions/cartActions'
 import { Link } from 'react-router-dom'
+import ScrollToTop from '../Stuff/ScrollToTop'
 import '../../style/index.css'
+import Meta from '../Stuff/Meta'
 
 const Title = styled.div`
     font-weight: bold;
@@ -65,13 +67,11 @@ const Cart = ({ match, location, history }) => {
       const checkoutHandler = () => {
            userInfo ? history.push('/shipping') : history.push('/login/accountcontext=register/auth/lang=en/redirect=none')
       }
-
-      useEffect(() => {
-        document.title = "Keranjang tasmu | Ayo checkout sekarang untuk mendapatkan produkmu"
-      }, [])
     
     return (
         <>
+            <ScrollToTop/>
+            <Meta title='Fashions | Ayo checkout produk favoritmu sekarang.'/>
             <Navbar/>
               <Announcement/>
                 <Container>

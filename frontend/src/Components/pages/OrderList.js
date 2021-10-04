@@ -31,18 +31,13 @@ const OrderList = () => {
 
     }, [dispatch, history, userInfo])
 
-
-    useEffect(() => {
-        document.title = "Admin Dashboard | Fashions, Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-    }, [])
-
     return (
         <>
         <Navbar/>
         <Container>
             <h3 style={{fontFamily: 'JetBrains Mono',fontWeight: 'bold', marginBottom: '30px'}}>List of Orders</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
-                <Table striped bordered hover responsive className='table-sm'> 
+                <Table striped bordered hover responsive className='table-sm' style={{marginBottom: '100px'}}> 
                     <thead>
                         <tr>
                             <th>ORDER ID</th>

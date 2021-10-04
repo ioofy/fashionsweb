@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { LinkContainer } from "react-router-bootstrap"
 import { Table, Button, Container, Row, Col } from 'react-bootstrap'
-import { useHistory } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Stuff/Message'
 import Loader from '../Stuff/Loader'
@@ -11,13 +11,15 @@ import {PRODUCT_CREATE_RESET} from '../../constants/productConstants'
 import swal from 'sweetalert'
 import '../../style/index.css'
 import NavbarBottom from '../Navbar/NavbarBottom'
+import Paginate from './Paginate'
 
 const ProductDashboard = () => {
+    const { pageNumber } = useParams() || 1;
     let history = useHistory()
     const dispatch = useDispatch()
 
     const productList = useSelector((state) => state.productList)
-    const { loading, error, products } = productList
+    const { loading, error, products, pages, page } = productList
 
     const productDelete = useSelector((state) => state.productDelete)
     const { loading: loadingDelete, error: errorDelete, success: successDelete } = productDelete
@@ -37,7 +39,7 @@ const ProductDashboard = () => {
             }
     
             else{
-                dispatch(listProducts())
+                dispatch(listProducts('', pageNumber))
             }
         }
         else {
@@ -46,17 +48,17 @@ const ProductDashboard = () => {
 
 
 
-    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
+    }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct, pageNumber])
 
     const deleteHandler = (id) => {
         swal({
             title: 'Are you sure?',
-            text: 'Remember, this action cannot be reversed!',
+            text: '❌ Remember, this action cannot be reversed!',
             icon: 'warning',
             buttons: ['No', 'Yes']
         }).then(answer => {
             if(answer){
-                swal({text: 'Succes, product has been deleted!',
+                swal({text: '✔️ Success, product has been deleted!',
                 icon: 'success'
                 })
                 // Delete Product
@@ -69,20 +71,16 @@ const ProductDashboard = () => {
         dispatch(createProduct())
     }
 
-    useEffect(() => {
-        document.title = "Admin Dashboard | Fashions, Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-    }, [])
-
     return (
         <>
         <Navbar/>
         <Container>
-            <Row className='aling-items-center'>
+            <Row className='align-items-center'>
                 <Col>
                     <h3 style={{fontFamily: 'JetBrains Mono',fontWeight: 'bold', marginBottom: '30px'}}>Products</h3>
                 </Col>
             </Row>
-            <Button style={{margin: '-10px 0px 20px', fontSize: '15px', backgroundColor: '#111', border: 'none'}} onClick={createProductHandler}>
+            <Button style={{margin: '-10px 0px 20px', fontSize: '15px', backgroundColor: '#111', border: 'none', fontFamily: 'JetBrains Mono', height: '3rem'}} onClick={createProductHandler}>
                 <i className='fas fa-plus' style={{margin: '5px 5px 0px 0px'}}></i> Create Product
             </Button>
             {loadingDelete && <Loader margin='10px 0px'/>}
@@ -92,11 +90,12 @@ const ProductDashboard = () => {
             {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
 
             {loading ? <Loader margin='10px 0px'/> : error ? <Message variant='danger'>{error}</Message> : (
-                <Table striped bordered hover responsive className='table-sm'> 
+                <>
+                <Table striped bordered hover responsive className='table-sm' style={{marginBottom: '100px'}}> 
                     <thead>
                         <tr>
                             <th>PRODUCT ID</th>
-                            <th>NAME</th>
+                            <th>PRODUCT NAME</th>
                             <th>PRICE</th>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
@@ -128,6 +127,8 @@ const ProductDashboard = () => {
                         ))}
                     </tbody>
                 </Table>
+                <Paginate pages={pages} page={page} isAdmin={true}/>
+            </>
             )}
         </Container>
         <NavbarBottom/>

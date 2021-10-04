@@ -48,6 +48,8 @@ const NavbarBottom = () => {
     const dispatch = useDispatch();
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
+    const cart = useSelector((state) => state.cart)
+    const { cartItems } = cart
   
     const logoutHandler = () => {
       dispatch(logout())
@@ -64,7 +66,7 @@ const NavbarBottom = () => {
 
            <LinkContainer to='/cart'>
               <NavLinks>
-                <Badge badgeContent={0} color="primary">
+                <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary">
                    <LocalMallOutlinedIcon />
                 </Badge>
               </NavLinks> 
@@ -89,7 +91,7 @@ const NavbarBottom = () => {
                 <FiLogOut onClick={logoutHandler} />
               </div> 
             : 
-              <Link to='login'>
+              <Link to='/login/accountcontext=register/auth/lang=en'>
                 <NavLinks>
                     <FiLogIn/>
                 </NavLinks> 

@@ -70,19 +70,16 @@ const Order = ({ match }) => {
         dispatch(payOrder(orderId, paymentResult))
     }
 
-    useEffect(() => {
-        document.title = "Checkout | Checkout sekarang untuk dapatkan produk favorit mu"
-    }, [])
-
     return (
         loading ? <Loader margin="250px auto"/> : error ? <Message variant='danger'>{error}</Message> :
         <>
             <Navbar/>
                     <Container className="placeorder-container">
-                            <Message variant='success'><h4 style={{textAlign: 'center', fontFamily: 'JetBrains Mono',fontWeight: 'bold'}}>🥳 Thanks, We accept your Order!</h4></Message>
+                            <Message variant='success'><h4 style={{textAlign: 'center', fontFamily: 'JetBrains Mono',fontWeight: 'bold'}}>🥳 Thanks, We accept your Order!</h4><div>{order.isPaid ? <h5 style={{color: 'teal', fontWeight: 'bold', textAlign: 'center'}}>Order is Paid</h5> : <h5 style={{color: '#FF5C58', fontWeight: 'bold', textAlign: 'center'}}>#Lets pay order now</h5>}</div></Message>
                             <div className="order-ref">Order #{order._id}</div>
+                            
                             <Row>
-                                <Col md={8}>
+                                <Col md={7}>
                                     <ListGroup variant='flush' style={{marginBottom: '40px'}}>
                                         <ListGroup.Item className="group">
                                             <h2 style={{fontWeight: 'bold', marginBottom: '20px'}}><FaShippingFast style={{margin: '-5px 10px 0px 0px'}} />Shipping Address</h2>
@@ -140,7 +137,7 @@ const Order = ({ match }) => {
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Col>
-                                <Col md={4}>
+                                <Col md={5}>
                                 <Card>
                                     <ListGroup variant='flush'>
                                     <ListGroup.Item className="group-checkout">

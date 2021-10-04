@@ -340,10 +340,6 @@ body{
   margin: 20px 0px;
 }
 
-.container .paypal-button{
-  display: none;
-}
-
 .container td, .container th{
   font-size: 15px;
   font-weight: bold;
@@ -369,6 +365,52 @@ body{
   color: white;
 }
 
+.row-review-container .list-group-item{
+  background-color: #FEFBF3;
+  border: none;
+  box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+}
+
+.row-review-container select{
+  background: #E6E0DC;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.row-review-container select:focus{
+  background: #E6E0DC;
+}
+
+.row-review-container textarea{
+  background: #E6E0DC;
+  font-weight: bold;
+  font-size: 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: none;
+}
+
+.row-review-container textarea:focus{
+  background: #E6E0DC;
+  font-weight: bold;
+}
+
+.container .page-item.active .page-link{
+  background-color: teal;
+  border: none;
+}
+
+.pagination .page-link{
+  border: none;
+  background-color: #111;
+  color: #fff;
+}
+
+.pagination .page-link:hover{
+  background-color: #FDD2BF;
+  color: #111;
+}
 
 @media screen and (max-width: 1024px){
   .container .product-name,.container .product-price, .container .product-form{
@@ -486,6 +528,7 @@ body{
   .profile-container{
     height: 750px;
   }
+
 }
 
 @media screen and (max-width: 280px){

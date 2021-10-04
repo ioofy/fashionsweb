@@ -36,10 +36,10 @@ const Menu = () => {
             <MenuContainer>
                 <MainMenu>
                     <MenuItem>
-                        <MenuLinks to='/about'>About Us</MenuLinks> 
+                        <MenuLinks to='/blog/about'>About Us</MenuLinks> 
                     </MenuItem>
                     <MenuItem>
-                        <MenuLinks to='/blog'>Our Blog</MenuLinks> 
+                        <MenuLinks to='/blog/development'>Our Blog</MenuLinks> 
                     </MenuItem>
                     <MenuItem>
                         <MenuLinks to='/products'>Our Products</MenuLinks> 

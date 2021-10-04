@@ -49,10 +49,6 @@ const PlaceOrder = ({ history }) => {
       )
     }
 
-    useEffect(() => {
-        document.title = "Checkout | Checkout sekarang untuk dapatkan produk favorit mu"
-    }, [])
-
     return (
         <>
             <Navbar/>

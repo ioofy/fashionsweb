@@ -3,13 +3,23 @@ import Product from '../models/productModel.js'
 
 
 // @desc Fetch all products
-// @route GET /api/products
+// @route GET /api/products?
 // @acces Public
 
 const getProducts = asyncHandler(async(req, res) => {
+    const pageSize = 10
+    const page = Number(req.query.pageNumber) || 1
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
 
-    const products = await Product.find({})
-    res.json(products)
+
+    const count = await Product.count({ ...keyword })
+    const products = await Product.find({ ...keyword }).limit(pageSize).skip(pageSize * (page -1))
+    res.json({ products, page, pages: Math.ceil(count / pageSize) })
 
 })
 
@@ -110,7 +120,7 @@ const createProductReview = asyncHandler(async(req, res) => {
         const alreadyReviewed = product.reviews.find(r => r.user.toString() === req.user._id.toString())
         if(alreadyReviewed){
             res.status(400)
-            throw new Error('Product already reviewed')
+            throw new Error('🤥 Oops, Product already reviewed')
         }
 
         const review = {

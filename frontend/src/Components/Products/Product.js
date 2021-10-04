@@ -154,7 +154,6 @@ const PriceInfo = styled.h1`
 `
 
 const Product = ( { product } ) => {
-  
 
     return (
         <ProductInfo>

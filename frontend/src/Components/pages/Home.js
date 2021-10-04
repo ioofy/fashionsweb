@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Footer from '../Footer/Footer'
 import Navbar from '../Navbar/Navbar'
 import Menu from '../Navbar/Menu'
@@ -9,6 +9,7 @@ import NewsLetter from '../Stuff/NewsLetter'
 import Products from '../Products/Products'
 import styled from '@emotion/styled'
 import NavbarBottom from '../Navbar/NavbarBottom'
+import Meta from '../Stuff/Meta'
 
 const TextInfoCat = styled.h1`
   font-family: 'Poynter';
@@ -33,11 +34,9 @@ const TextInfoCloth = styled.h1`
 
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "Fashions | Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-  }, [])
     return (
       <>
+          <Meta/>
           <Announcement/>
             <Navbar />
              <Menu />

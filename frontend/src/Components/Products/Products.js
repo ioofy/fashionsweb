@@ -5,6 +5,10 @@ import Message from '../Stuff/Message'
 import Loader from '../Stuff/Loader'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../../actions/productActions'
+import { useParams } from 'react-router-dom'
+import Paginate from '../pages/Paginate'
+import { Container } from 'react-bootstrap'
+import '../../style/index.css'
 
 const ContainerProd = styled.div
 `
@@ -21,30 +25,37 @@ const ContainerProd = styled.div
 // Lalu akan dirender ke page/Home.js
 
 const Products = () => {
-
+    const {keyword} = useParams();
+    const { pageNumber } = useParams() || 1;
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const { loading, error, products, page, pages } = productList
 
     useEffect(() =>{
 
-        dispatch(listProducts())
+        dispatch(listProducts(keyword, pageNumber))
 
-    }, [dispatch])
+    }, [dispatch, keyword, pageNumber])
 
     
     return (
     <>
         { loading ? <Loader margin= '200px auto'/> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : 
-        
+        <>
         <ContainerProd>
             {products.map(product => (
 
                 <Product product={product} key={product._id} />
 
             ))}
-        </ContainerProd> }
+        </ContainerProd>
+        <Container style={{marginTop: '100px'}}>
+            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''}/>
+        </Container>
+        </>
+     }
+    
 
     </>
     )

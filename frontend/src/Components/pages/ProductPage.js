@@ -4,6 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import { Link } from "react-router-dom";
 import Rating from '../Stuff/Rating'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ScrollToTop from '../Stuff/ScrollToTop'
 import Footer from "../Footer/Footer";
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import NewsLetter from "../Stuff/NewsLetter";
@@ -11,8 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { listProductsDetails, createProductReview } from "../../actions/productActions";
 import Loader from "../Stuff/Loader";
 import Message from "../Stuff/Message";
-import { Col, Form, Row, ListGroup, Button } from "react-bootstrap";
+import { Col, Form, Row, ListGroup  } from "react-bootstrap";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
+import '../../style/index.css'
+import Meta from "../Stuff/Meta";
 
 const Container = styled.div`
   display: flex;
@@ -83,18 +86,28 @@ const Image = styled.img`
   @media screen and (max-width: 1024px){
     height: 34vh;
   }
+  
+  @media screen and (max-width: 834px){
+    max-width: 105%;
+  }
 
   @media screen and (max-width: 540px){
     height: 45vh;
+    max-width: 150%;
   }
 
   @media screen and (max-width: 414px){
     height: 40vh;
-    max-width: 145%;
+    max-width: 150%;
   }
 
   @media screen and (max-width: 375px){
-    max-width: 125%;
+    max-width: 140%;
+  }
+
+  @media screen and (max-width: 320px){
+    height: 50vh;
+    max-width: 130%;
   }
 
   @media screen and (max-width: 280px){
@@ -124,7 +137,7 @@ const Description = styled.p`
   text-align: justify;
   margin: 20px 0px;
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 884px){
       text-align: left;
       width: 100%;
   }
@@ -246,7 +259,7 @@ const TestimonialsContainer = styled.div`
 `
 
 const TestimonialsBox = styled.div`
-  width: 500px;
+  width: 522px;
   box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
   background-color: #FEFBF3;
   padding: 20px;
@@ -258,6 +271,10 @@ const TestimonialsBox = styled.div`
     transform: translateY(-10px);
     transition: all ease 0.3s;
   }
+  
+  @media(max-width: 1024px){
+    width: 375px;
+  }
 
   @media(max-width: 848px){
     padding: 10px;
@@ -265,7 +282,7 @@ const TestimonialsBox = styled.div`
   }
 
   @media(max-width:280px){
-    width: 245px;
+    width: 248px !important;
   }
 
   @media(max-width:360px){
@@ -308,6 +325,19 @@ const DateContent = styled.p`
   margin-top: -20px;
 `
 
+const SubmitButton = styled.button`
+  background-color: #111;
+  border: none;
+  font-size: 15px;
+  width: 9rem;
+  color: #fff;
+  height: 2.8rem;
+  text-transform: uppercase;
+  font-family: 'JetBrains Mono';
+  box-shadow: 5px 5px teal;
+  margin-bottom: 10px;
+`
+
 // THIS GONNA BE PRODUCT PAGE
 const ProductPage = ({ history, match }) => {
 
@@ -316,6 +346,7 @@ const ProductPage = ({ history, match }) => {
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch();
   const productDetails = useSelector(state => state.productDetails);
@@ -338,7 +369,6 @@ const ProductPage = ({ history, match }) => {
       rating,
       comment,
     }))
-    console.log('ok')
   }
 
   useEffect(() => {
@@ -346,21 +376,19 @@ const ProductPage = ({ history, match }) => {
       setRating(0)
       setComment('')
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
+      setMessage('✔️Thanks review was submitted')
     }
     dispatch(listProductsDetails(match.params.id))
 
   }, [dispatch, match, successProductReview])
-  
-  
-  useEffect(() => {
-    document.title = "Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-  }, [])
-
 
   return (
     <>
+      <ScrollToTop/>
       <Navbar />
       {loading ? <Loader margin= '200px auto' /> : error ? <Message variant='danger' margin='150px auto' textAlign='center'>{error}</Message> : (
+      <>
+      <Meta title={`Fashions | ${product.name}`}/>
       <Container>
         <Link to="/products" style={{ cursor: "auto" }}>
           <ButtonBack>
@@ -381,7 +409,7 @@ const ProductPage = ({ history, match }) => {
                   </ImgContainer>
                   <InfoContainer>
                     <Title>{product.name}</Title>
-                    <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px'/>
+                    <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px' marginBottom='10px'/>
                     <Price>${product.price},00</Price>
                     <Description>{product.description}</Description>
                     <Status> Avaliable : {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}</Status>
@@ -441,23 +469,26 @@ const ProductPage = ({ history, match }) => {
                   </InfoContainer>
             </Wrapper>
 
-            <Row>
+            <Row className='row-review-container'>
               <Col md={5}>
-                <ListGroup.Item style={{marginTop: '50px'}} className="group">
+                <ListGroup.Item style={{marginTop: '50px'}} variant='flush'>
                   <h2 style={{fontWeight:'bold'}}>Write a Customer Review</h2>
+                  {message && 
+                    <Message variant='success'>{message}</Message>
+                  }
                   {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group controlId='rating'>
                         <Form.Label>Rating</Form.Label>
                         <Form.Control as='select' value={rating} onChange={(e) => 
-                          setRating(e.target.value)}>
-                            <option value="">Select...</option>
-                            <option value="1">1 - Poor</option>
-                            <option value="2">2 - Fair</option>
-                            <option value="3">3 - Good</option>
-                            <option value="4">4 - Very Good</option>
-                            <option value="5">5 - Excellent</option>
+                          setRating(e.target.value)} required>
+                            <option value="">Select Reviews..</option>
+                            <option value="1">⭐ - Poor</option>
+                            <option value="2">⭐⭐ - Fair</option>
+                            <option value="3">⭐⭐⭐ - Good</option>
+                            <option value="4">⭐⭐⭐⭐ - Very Good</option>
+                            <option value="5">⭐⭐⭐⭐⭐ - Excellent</option>
                           </Form.Control>
                       </Form.Group>
                       <Form.Group controlId='comment'>
@@ -467,14 +498,15 @@ const ProductPage = ({ history, match }) => {
                           type='text'
                           placeholder='Enter the description'
                           value={comment}
+                          maxLength='40'
                           onChange={(e) => setComment(e.target.value)}
-                           ></Form.Control>
+                          required></Form.Control>
                       </Form.Group>
-                      <Button type='submit'>
+                      <SubmitButton type='submit'>
                           Submit Reviews
-                      </Button>
+                      </SubmitButton>
                     </Form>
-                  ) : <Message>Please <Link to='/login/accountcontext=register/auth/lang=en'>Login</Link> to write a review</Message>}
+                  ) : <Message variant='danger'>Please <Link to='/login/accountcontext=register/auth/lang=en' style={{textDecoration: 'none', fontWeight: 'bold', color: 'teal'}}>Login</Link> first to write a review</Message>}
                 </ListGroup.Item>
                 <Testimonials>
                   <TestimonialsHeading>
@@ -493,14 +525,14 @@ const ProductPage = ({ history, match }) => {
                 <TestimonialsBox key={review._id}>
                 <BoxTop>
                   <Profile>
-                    <Username><strong>{review.name}</strong></Username>
+                    <Username><strong>@{review.name}</strong></Username>
                   </Profile>
                   <Ratings>
                     <Rating value={review.rating}/>
                   </Ratings>
                 </BoxTop>
                 <DateContent>
-                  {review.createdAt.substring(0, 10)}
+                  On {review.createdAt.substring(0, 10)}
                 </DateContent>
                 <Reviews>
                   <Content>
@@ -510,8 +542,8 @@ const ProductPage = ({ history, match }) => {
               </TestimonialsBox>
               ))}
             </TestimonialsContainer>
-
       </Container>
+    </>
     )}
       <NewsLetter/>
       <Footer />

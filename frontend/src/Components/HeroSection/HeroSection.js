@@ -34,7 +34,7 @@ const HeroSection = () => {
                     <div className="__menu-container">
                         <h1 id="yzk4lcx">Explore More</h1>
                         <h1 id="zcxjk23">Your Fashion’s</h1>
-                        <Link to="/login"> <Button> Get Started </Button></Link>
+                        <Link to="/login/accountcontext=register/auth/lang=en"> <Button> Get Started </Button></Link>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import { Container, Form, Button, Col} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,10 +25,6 @@ const Payment = ({ history }) => {
         dispatch(savePaymentMethod(paymentMethod))
         history.push('/placeorder')
     }
-
-    useEffect(() => {
-        document.title = "Pilih metode pembayaranmu"
-      }, [])
 
     return (
         <>

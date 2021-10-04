@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Badge from '@material-ui/core/Badge';
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
-import { NavLogo, NavbarContainer, Header, NavIcon, SearchContainer, SearchInput, IconButton, NavLinks } from './NavbarElements'
+import { NavLogo, NavbarContainer, Header, NavIcon,  NavLinks } from './NavbarElements'
 import { FiHeart } from "react-icons/fi"
-import { BiSearchAlt } from "react-icons/bi"
 import { IoLanguage } from "react-icons/io5"
+import SearchBox from './SearchBox';
+import { Route } from 'react-router-dom'
 import { LinkContainer } from "react-router-bootstrap"
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-
   const [scroll, setScroll] = useState(false);
   const [state, setState] = useState({});
+  const cart = useSelector((state) => state.cart)
+  const { cartItems } = cart
 
   const changeNav = () => {
       if(window.scrollY >= 70){
@@ -54,19 +57,13 @@ const Navbar = () => {
 
                   <LinkContainer to='/cart'>
                     <NavLinks>
-                      <Badge badgeContent={0} color="primary">
+                      <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary">
                         <LocalMallOutlinedIcon />
                       </Badge>
                     </NavLinks> 
                   </LinkContainer>
-
               </NavIcon>
-                  <SearchContainer>
-                    <IconButton>
-                        <BiSearchAlt size={22}/>
-                    </IconButton>
-                    <SearchInput placeholder="Search favourite products." />
-                </SearchContainer>
+            <Route render={({ history }) => <SearchBox history={ history }/>}/>
             </NavbarContainer>
         </Header>
       </>

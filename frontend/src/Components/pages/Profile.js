@@ -10,7 +10,9 @@ import Navbar from '../Navbar/Navbar'
 import Announcement from '../Stuff/Announcement'
 import NavbarBottom from '../Navbar/NavbarBottom'
 import { FiBox,FiUser } from "react-icons/fi"
+import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import { listMyOrders } from '../../actions/orderActions'
+import swal from 'sweetalert'
 import '../../style/index.css'
 
 const Profile = ( ) => {
@@ -44,7 +46,8 @@ const Profile = ( ) => {
             window.location.reload()
         }
         else{
-            if(!user.name){
+            if(!user.name || success){
+                dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
                 dispatch(listMyOrders())
             }
@@ -54,7 +57,7 @@ const Profile = ( ) => {
             }
         }
 
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userInfo, user, success])
     
     const submitHandler = (e) => {
 
@@ -64,7 +67,20 @@ const Profile = ( ) => {
         }
         else {
             //DISPATCH UPDATE PROFILE
-            dispatch(updateUserProfile({ id: user._id, name, email, password }))
+            swal({
+                title: 'Apakah kamu yakin?',
+                text: '❌ Ingat! aksi ini tidak bisa dikembalikan',
+                icon: 'warning',
+                buttons: ['Tidak', 'Ya']
+            }).then(answer => {
+                if(answer){
+                    swal({text: '✔️Sip, Akun kamu berhasil diubah',
+                    icon: 'success'
+                    })
+                    dispatch(updateUserProfile({ id: user._id, name, email, password }))
+                    window.location.reload()
+                }
+            })
         }
         
     }

@@ -38,12 +38,12 @@ const UserList = () => {
     const deleteHandler = (id) => {
         swal({
             title: 'Are you sure?',
-            text: 'Remember, this action cannot be reversed!',
+            text: '❌ Remember, this action cannot be reversed!',
             icon: 'warning',
             buttons: ['No', 'Yes']
         }).then(answer => {
             if(answer){
-                swal({text: 'Succes, user has been deleted!',
+                swal({text: '✔️Success, user has been deleted!',
                 icon: 'success'
                 })
                 dispatch(deleteUser(id))
@@ -51,17 +51,13 @@ const UserList = () => {
         })
     }
 
-    useEffect(() => {
-        document.title = "Admin Dashboard | Fashions, Explore dan beli pakaian dengan fashion favorit kamu sekarang juga"
-    }, [])
-
     return (
         <>
         <Navbar/>
         <Container>
             <h3 style={{fontFamily: 'JetBrains Mono',fontWeight: 'bold', marginBottom: '30px'}}>List of Users</h3>
             {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message> : (
-                <Table striped bordered hover responsive className='table-sm'> 
+                <Table striped bordered hover responsive className='table-sm' style={{marginBottom: '100px'}}> 
                     <thead>
                         <tr>
                             <th>USER ID</th>

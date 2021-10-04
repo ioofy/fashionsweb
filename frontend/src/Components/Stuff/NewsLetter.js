@@ -10,15 +10,12 @@ const Container = styled.div`
     flex-direction: column;
     background-color: #FDD2BF;
     margin-top: 130px;
-
     @media screen and (max-width: 1024px){
         height: 30vh;
     }
-
     @media screen and (max-width: 768px){
         height: 35vh;
     }
-
     @media screen and (max-width: 540px){
         height: 45vh;
     }
@@ -28,11 +25,9 @@ const Title = styled.h1`
     font-size: 60px;
     margin-bottom: 20px;
     font-weight: bold;
-
     @media screen and (max-width: 960px){
         font-size: 45px;
     }
-
     @media(max-width: 360px){
         font-size: 35px;
     }
@@ -43,20 +38,16 @@ const Description = styled.div`
     font-weight: 300;
     color: #111;
     margin-bottom: 20px;
-
     @media screen and (max-width: 960px){
         font-size: 28px;
         text-align: center;
     }
-
     @media screen and (max-width: 884px){
         font-size: 22px;
     }
-
     @media screen and (max-width: 540px){
         font-size: 22px;
     }
-
     @media screen and (max-width: 375px){
         font-size: 20px;
     }
@@ -69,16 +60,13 @@ const InputContainer = styled.div`
     display: flex;
     justify-content: space-between;
     border: 2px solid lightgray;
-
     @media screen and (max-width: 960px){
         justify-content: center;
         width: 90%;
     }
-
     @media screen and (max-width: 1024px){
          width: 70%;
     }
-
 `
 
 const Input = styled.input`

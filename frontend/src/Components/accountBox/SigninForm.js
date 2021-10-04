@@ -7,6 +7,7 @@ import Loader from '../Stuff/Loader'
 import { login } from '../../actions/userActions'
 import { useHistory } from 'react-router-dom'
 import { Marginer } from './marginer'
+import Meta from '../Stuff/Meta'
 
 const LoginForm = ( { location } ) => {
     
@@ -27,10 +28,6 @@ const LoginForm = ( { location } ) => {
             window.location.reload()
         }
     }, [history, userInfo, redirect])
-
-    useEffect(() => {
-        document.title = "Login sekarang untuk mulai mencari produk favorit kamu sekarang juga!"
-      }, [])
     
     const submitHandler = (e) => {
         e.preventDefault()
@@ -38,9 +35,11 @@ const LoginForm = ( { location } ) => {
         dispatch(login(email, password))
     }
     
-    const { switchToSignup } = useContext(AccountContext);
+    const { switchToSignup } = useContext(AccountContext)
 
     return(
+        <>
+            <Meta title='Fashions | Login sekarang dan mulai mencari produk favoritmu.'/>
             <BoxContainer type="top">
             {error && 
                 <Message variant='danger' width="14rem" height="3.2rem">{error}</Message>
@@ -63,6 +62,7 @@ const LoginForm = ( { location } ) => {
                         </BoldLink>
                     </MutedLink>
             </BoxContainer>
+        </>
     )
 }
 

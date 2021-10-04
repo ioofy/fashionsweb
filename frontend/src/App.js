@@ -2,7 +2,6 @@ import React from 'react';
 import Home from './Components/pages/Home';
 import ProductPage from './Components/pages/ProductPage';
 import ProductList from './Components/pages/ProductList';
-import ScrollToTop from './Components/Stuff/ScrollToTop';
 import Cart from './Components/pages/Cart';
 import Login from './Components/pages/Login'
 import Profile from './Components/pages/Profile';
@@ -21,10 +20,12 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-        <ScrollToTop/>
         <Route path='/login/accountcontext=register/auth/lang=en' component={Login}/>
         <Route path='/profile' component={Profile}/>
         <Route path='/products/' component={ProductList} exact />
+        <Route path='/products/search/:keyword' component={ProductList}/>
+        <Route path='/products/search/:keyword/page/:pageNumber' component={ProductList}/>
+        <Route path='/page/:pageNumber' component={ProductList}/>
         <Route path='/products/item/:id' component={ProductPage} />
         <Route path='/cart/:id?' component={Cart}/>
         <Route path='/shipping' component={Shipping}/>
@@ -33,7 +34,8 @@ function App() {
         <Route path='/placeorder' component={PlaceOrder}/>
         <Route path='/admin/userlist' component={UserList}/>
         <Route path='/admin/orderlist' component={OrderList}/>
-        <Route path='/admin/productlist' component={ProductDashboard}/>
+        <Route path='/admin/productlist' component={ProductDashboard} exact/>
+        <Route path='/admin/productlist/:pageNumber' component={ProductDashboard} exact/>
         <Route path='/admin/user/:id/edit' component={UserEdit}/>
         <Route path='/admin/product/:id/edit' component={ProductEdit}/>
         <Route path='/' component={Home} exact/>
