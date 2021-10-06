@@ -1,0 +1,100 @@
+*{
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: #111;
+}
+
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+}
+
+.tab-container{
+    background: #F8D3E2;
+    display: flex;
+    opacity: 0;
+    border-radius: 24px 24px 0px 0px;
+    padding: 10px;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+}
+
+
+.tab{
+    background: #F8D3E2;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 2px;
+}
+
+.tab svg{
+    font-size: 1.3rem;
+}
+
+.tab .lng{
+    margin-top: 2px;
+    font-weight: bold;
+    color: #111;
+}
+
+.differentp{
+    font-weight: bold;
+    color: #111;
+}
+
+.tab.purple .active-link svg, .tab.purple .active-link .lng{
+    color: rgba(91, 55, 183, 1)
+}
+
+.tab.teal .active-link svg, .tab.teal .active-link .lng{
+    color: rgba(28, 150, 162, 1);
+}
+
+.tab.red .active-link svg, .tab.red .active-link .lng{
+    color: rgb(255, 0, 0);
+}
+
+.tab.orange .active-link svg, .tab.tab.orange .active-link .lng{
+    color: #FF7600;
+}
+
+@media screen and (max-width: 884px){
+    .tab-container{
+        opacity: 1;
+        padding: 10px 120px;
+    }
+}
+
+@media screen and (max-width: 414px){
+    .tab-container{
+        padding: 10px 30px;
+    }
+}
+
+@media screen and (max-width: 360px){
+    .tab-container{
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 280px){
+    .tab-container{
+        padding: 10px 13px;
+    }
+
+    .tab .lng{
+        font-size: 0.9rem;
+    }
+}

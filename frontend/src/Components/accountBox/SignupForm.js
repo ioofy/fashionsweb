@@ -68,9 +68,9 @@ const SignupForm = ({ location }) => {
                     <Input type="email" placeholder="📧 Your Email" id="email" value={email} 
                     onChange={(e) => setEmail(e.target.value)} required/>
                     <Input type="password" placeholder="🔑 Your Password" id="password" value={password} 
-                    onChange={(e) => setPassword(e.target.value)} required/>
+                    onChange={(e) => setPassword(e.target.value)} required autoComplete="on"/>
                     <Input type="password" placeholder="🔑 Confirm Your Password" id="confirmPassword" value={confirmPassword} 
-                    onChange={(e) => setConfirmPassword(e.target.value)} required/>
+                    onChange={(e) => setConfirmPassword(e.target.value)} required autoComplete="on"/>
 
                     <Marginer direction="vertical" margin="1em" />
                     <SubmitButton type="submit">Register</SubmitButton>

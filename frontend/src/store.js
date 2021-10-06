@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { productListReducer, productDetailsReducer, productDeleteReducer, productCreateReducer, productUpdateReducer, productReviewCreateReducer} from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
+import { wishListReducer } from './reducers/wishListReducer'
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer, userListReducer, userDeleteReducer, userUpdateReducer } from './reducers/userReducers'
 import { orderCreateReducer, orderDetailsReducer, orderPayReducer, orderListMyReducer, orderListReducer } from './reducers/orderReducers'
 
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     productUpdate : productUpdateReducer,
     productReviewCreate : productReviewCreateReducer,
     cart: cartReducer,
+    wishList: wishListReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
@@ -34,6 +36,10 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
 
+const wishListItemsFromStorage = localStorage.getItem('wishListItems')
+? JSON.parse(localStorage.getItem('wishListItems'))
+: []
+
 const userInfoFromStorage = localStorage.getItem('userInfo')
   ? JSON.parse(localStorage.getItem('userInfo'))
   : null
@@ -46,6 +52,9 @@ const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
+  },
+  wishList: {
+    wishListItems: wishListItemsFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
 }

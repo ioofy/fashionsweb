@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled/macro'
-import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from 'react-router-dom';
 import Rating from '../Stuff/Rating';
+import {RiShoppingBag3Fill} from 'react-icons/ri'
 
 const ProductInfo = styled.div`
 
@@ -171,7 +171,7 @@ const Product = ( { product } ) => {
                             ${product.price},00
                         </PriceInfo>
                         <Icon>
-                            <Link to='/wishlist'><FavoriteBorderOutlinedIcon style={{color: '#FF6B6B'}}/></Link>
+                            <Link to={`/products/item/${product._id}`}><RiShoppingBag3Fill style={{color: '#FF6B6B'}} size={25}/></Link>
                         </Icon>
                     </Info>
                     <InfoHover>

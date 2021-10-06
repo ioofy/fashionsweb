@@ -1,105 +1,63 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../../actions/userActions'
-import { FiLogIn, FiLogOut, FiUser, FiHome } from "react-icons/fi"
-import { LinkContainer } from "react-router-bootstrap"
-import styled from '@emotion/styled';
+import { useSelector } from 'react-redux'
+import { FiLogIn, FiHeart, FiShoppingBag, FiHome, FiUser } from "react-icons/fi"
 import Badge from '@material-ui/core/Badge';
-import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
-
-const NavBottom = styled.div`
-    opacity: 0;
-    display: flex;
-    border-radius: 24px 24px 0px 0px;
-    padding: 0px 40px;
-    background-color: #F8D3E2;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 3;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 60px;
-    width: 100%;
-
-    @media screen and (max-width: 884px){
-        opacity: 1;
-        padding: 0px 120px;
-    }
-
-    @media screen and (max-width: 414px){
-        padding: 0px 45px;
-    }
-
-    @media screen and (max-width: 320px){
-        padding: 0px 20px;
-    }
-`
-
-const NavLinks = styled.div`
-    color: #0d1137;
-    font-size: 1.5rem;
-    cursor: pointer;
-
-`
+import { NavLink } from 'react-router-dom';
+import '../../style/NavBottom.css'
 
 const NavbarBottom = () => {
-    const dispatch = useDispatch();
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
     const cart = useSelector((state) => state.cart)
     const { cartItems } = cart
-  
-    const logoutHandler = () => {
-      dispatch(logout())
-    }
+
 
 
     return (
-        <NavBottom>
-           <LinkContainer to='/'>
-              <NavLinks>
-                <FiHome />
-              </NavLinks>
-           </LinkContainer>
+      <div className="wrapper">
+        <div className='tab-container'>
+            <div className="tab purple">
+              <NavLink exact to='/' activeClassName="active-link">
+                <FiHome/>
+              <p className="lng">Home</p>           
+              </NavLink>
+            </div>
 
-           <LinkContainer to='/cart'>
-              <NavLinks>
-                <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary">
-                   <LocalMallOutlinedIcon />
+            <div className="tab teal">
+                <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="secondary" showZero>
+                  <NavLink exact to='/cart' activeClassName="active-link">
+                    <FiShoppingBag/>
+                  <p className='lng'>Cart</p>
+                  </NavLink>
                 </Badge>
-              </NavLinks> 
-          </LinkContainer>
+            </div>       
+  
+            <div className="tab red">
+              <NavLink exact to='/wishlist' activeClassName="active-link">
+                  <FiHeart/>
+              </NavLink>
+              <p className="lng">Wishlist</p>
+            </div>
 
-          {userInfo ?
-            <LinkContainer to='/profile'style={{display: 'block'}}>
-              <NavLinks>
-                <FiUser />
-              </NavLinks>
-            </LinkContainer> :
-            <LinkContainer to='/profile' style={{display: 'none'}}>
-              <NavLinks>
-                <FiUser />
-              </NavLinks>
-            </LinkContainer>
-          }
-
-          <div>
+            <div className="tab orange">
             {userInfo ?
-              <div style={{color: '#111', fontSize: '1.35rem'}}>
-                <FiLogOut onClick={logoutHandler} />
-              </div> 
-            : 
-              <Link to='/login/accountcontext=register/auth/lang=en'>
-                <NavLinks>
-                    <FiLogIn/>
-                </NavLinks> 
-              </Link>
-
+            <>
+              <NavLink exact to='/profile' activeClassName="active-link">
+              <FiUser/>
+              <p className="lng">Profile</p> 
+              </NavLink>
+            </>
+            :
+            <>
+              <NavLink exact to='/profile' activeClassName="active-link">
+                <FiLogIn/>
+              <p className="lng">Login</p>
+              </NavLink>
+            </>
             }
-          </div>
-        </NavBottom>
+            </div>
+        </div>
+      </div>
     )
 }
 

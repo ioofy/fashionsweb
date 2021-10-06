@@ -16,6 +16,7 @@ import { Col, Form, Row, ListGroup  } from "react-bootstrap";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import '../../style/index.css'
 import Meta from "../Stuff/Meta";
+import { FiHeart } from "react-icons/fi";
 
 const Container = styled.div`
   display: flex;
@@ -71,6 +72,7 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+  position: relative;
 `;
 
 const Image = styled.img`
@@ -106,8 +108,8 @@ const Image = styled.img`
   }
 
   @media screen and (max-width: 320px){
-    height: 50vh;
-    max-width: 130%;
+    height: 47vh;
+    max-width: 145%;
   }
 
   @media screen and (max-width: 280px){
@@ -338,6 +340,30 @@ const SubmitButton = styled.button`
   margin-bottom: 10px;
 `
 
+const Icon = styled.div`
+
+    text-decoration: none;
+    color: #FF3D68;
+    top: 0;
+    bottom: 0;
+    margin-top: 65px;
+    margin-left: -10px;
+    position: absolute;
+    font-size: 2.5rem;
+    cursor: pointer;
+
+    @media screen and (max-width: 884px){
+      font-size: 2rem;
+      margin-top: 55px;
+      margin-left: -15px;
+    }
+    @media screen and (max-width: 280px){
+      font-size: 1.8rem;
+      margin-top: 55px;
+      margin-left: -18px;
+    }
+`
+
 // THIS GONNA BE PRODUCT PAGE
 const ProductPage = ({ history, match }) => {
 
@@ -358,9 +384,13 @@ const ProductPage = ({ history, match }) => {
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin
 
-  const addToCart = () => {
+  const AddToCart = (e) => {
     //bukan sneaker
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
+
+  const AddToWishList = (e) => {
+    history.push(`/wishlist/${match.params.id}`)
   }
 
   const submitHandler = (e) => {
@@ -406,6 +436,9 @@ const ProductPage = ({ history, match }) => {
             <Wrapper>
                   <ImgContainer>
                     <Image src={product.image} />
+                    <Icon>
+                      <FiHeart style={{color: '#FF6B6B'}} onClick={AddToWishList}/>
+                    </Icon>
                   </ImgContainer>
                   <InfoContainer>
                     <Title>{product.name}</Title>
@@ -446,7 +479,7 @@ const ProductPage = ({ history, match }) => {
                            <FilterTitle>Size :</FilterTitle>
                               <FilterSize color="#C5DCDD" value={size} onChange={(e) => setSize(e.target.value)}>
                                   <FilterOption>S</FilterOption>
-                                  <FilterOption>M</FilterOption>
+                                  <FilterOption >M</FilterOption>
                                   <FilterOption>L</FilterOption>
                                   <FilterOption>XL</FilterOption>
                                   <FilterOption>XXL</FilterOption>
@@ -462,7 +495,7 @@ const ProductPage = ({ history, match }) => {
                         <FilterColor color="#F7D59C" id="charcoal" />
                     </Filter>
 
-                      <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={addToCart}> 
+                      <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={AddToCart}> 
                           <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
                           ADD TO BAG
                       </ButtonCart>

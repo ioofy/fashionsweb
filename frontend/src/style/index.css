@@ -71,7 +71,7 @@ body{
 
 .container .product-name a{
   text-decoration: none;
-  color: #111;
+  color: teal;
   font-weight: bold;
   font-size: 19px;
 }
@@ -86,13 +86,13 @@ body{
 .container .product-item a{
   font-weight: bold;
   text-decoration: none;
-  color: #111;
+  color: teal;
   font-size: 18px;
 }
 
 .container .product-items a{
   font-weight: bold;
-  color: #111;
+  color: teal;
   font-size: 18px;
 }
 
@@ -410,6 +410,11 @@ body{
 .pagination .page-link:hover{
   background-color: #FDD2BF;
   color: #111;
+}
+
+.wishlist-group img{
+  border-radius: 20px;
+  background-color: #C5DCDD;
 }
 
 @media screen and (max-width: 1024px){

@@ -55,6 +55,10 @@ const SearchInput = styled.input`
         padding-left: 50px;
     }
 
+    @media screen and (max-width: 280px){
+        padding-left: 42px;
+    }
+
 `
 
 const IconButton = styled.button`

@@ -50,7 +50,7 @@ const LoginForm = ( { location } ) => {
                     onChange={(e) => setEmail(e.target.value)} required/>
 
                     <Input type="password" placeholder="🔑 Your Password" id="password" value={password} 
-                    onChange={(e) => setPassword(e.target.value)} required/>
+                    onChange={(e) => setPassword(e.target.value)} required autoComplete="on"/>
 
                     <MutedLink type="right">Forget your password?</MutedLink>
                     <SubmitButton type="submit">Login</SubmitButton>

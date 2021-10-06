@@ -57,7 +57,7 @@ const Navbar = () => {
 
                   <LinkContainer to='/cart'>
                     <NavLinks>
-                      <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary">
+                      <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="secondary" showZero>
                         <LocalMallOutlinedIcon />
                       </Badge>
                     </NavLinks> 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../Stuff/Message'
 import Loader from '../Stuff/Loader'
@@ -9,11 +10,35 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Navbar from '../Navbar/Navbar'
 import Announcement from '../Stuff/Announcement'
 import NavbarBottom from '../Navbar/NavbarBottom'
-import { FiBox,FiUser } from "react-icons/fi"
+import { FiBox, FiUser } from "react-icons/fi"
+import { CgLogOut } from 'react-icons/cg'
 import { USER_UPDATE_PROFILE_RESET } from '../../constants/userConstants'
 import { listMyOrders } from '../../actions/orderActions'
 import swal from 'sweetalert'
+import { logout } from '../../actions/userActions'
 import '../../style/index.css'
+import ScrollToTop from '../Stuff/ScrollToTop'
+
+const ButtonLogout = styled.button`
+  font-size: 1rem;
+  width: 7rem;
+  height: 2.5rem;
+  margin: -20px 0px 30px;
+  display: flex;
+  font-family: "JetBrains Mono", monospace;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: #111;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 5px;
+
+  @media screen and (max-width: 1024px){
+      margin-left: 1px;
+  }
+`
 
 const Profile = ( ) => {
 
@@ -38,6 +63,11 @@ const Profile = ( ) => {
     const orderListMy = useSelector((state) => state.orderListMy)
     const { loading:loadingOrders, error:errorOrders, orders } = orderListMy
 
+    const logoutHandler = () => {
+        dispatch(logout())
+        history.push('/login/accountcontext=register/auth/lang=en')
+        window.location.reload()
+    }
 
 
     useEffect(() => {
@@ -88,9 +118,21 @@ const Profile = ( ) => {
 
     return(
     <>
+    <ScrollToTop/>
     <Navbar/>
         <Announcement/>
         <Container className="profile-container">
+        <ButtonLogout onClick={logoutHandler}>
+            <CgLogOut
+            style={{
+                marginRight: "6px",
+                fontSize: "22px",
+                marginTop: "-3px",
+                marginLeft: "-5px",
+            }}
+            />
+            LOGOUT
+        </ButtonLogout>
             <Row>
                 <Col md={3}>
                 <h2 style={{fontWeight: 'bold'}}><FiUser style={{margin: '-5px 5px 0px 0px'}} />Your Profile</h2>
@@ -130,6 +172,7 @@ const Profile = ( ) => {
                             placeholder='Enter password'
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="on"
                         ></Form.Control>
                     </Form.Group>
 
@@ -140,6 +183,7 @@ const Profile = ( ) => {
                             placeholder='Confirm password'
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
+                            autoComplete="on"
                         ></Form.Control>
                     </Form.Group>
 
@@ -153,7 +197,7 @@ const Profile = ( ) => {
                     <h2 style={{fontWeight: 'bold'}}><FiBox style={{margin: '-5px 5px 0px 0px'}}/>Your Orders</h2>
                     {loadingOrders ? <Loader margin='20px auto'/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> :
                         (
-                            <Table striped bordered hover responsive className='table-sm'>
+                            <Table striped bordered hover responsive className='table-sm' style={{marginBottom: '100px'}}>
                             <thead>
                                 <tr>
                                     <th>ORDER ID</th>
@@ -168,7 +212,7 @@ const Profile = ( ) => {
                                 {orders.map(order => (
                                     <tr key={order._id}>
                                         <td>{order._id}</td>
-                                        <td>{order.createdAt.substring(0, 10)}</td>
+                                        <td>On {order.createdAt.substring(0, 10)}</td>
                                         <td>${order.totalPrice},00</td>
                                         <td>{order.isPaid ? order.paidAt.substring(0, 10) : <div>❌</div> }</td>
                                         <td>{order.isDelivered ? order.deliveredAt.substring(0, 10) : <div>❌</div> }</td>

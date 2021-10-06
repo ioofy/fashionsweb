@@ -14,6 +14,7 @@ import UserEdit from './Components/pages/UserEdit';
 import ProductDashboard from './Components/pages/ProductDashboard';
 import ProductEdit from './Components/pages/ProductEdit';
 import OrderList from './Components/pages/OrderList';
+import Wishlist from './Components/pages/Wishlist';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/cart/:id?' component={Cart}/>
         <Route path='/shipping' component={Shipping}/>
         <Route path='/payment' component={Payment}/>
+        <Route path='/wishlist/:id?' component={Wishlist}/>
         <Route path='/order/:id' component={Order}/>
         <Route path='/placeorder' component={PlaceOrder}/>
         <Route path='/admin/userlist' component={UserList}/>

@@ -102,7 +102,7 @@ const Cart = ({ match, location, history }) => {
                                                 <Image src={item.image} alt={item.name} fluid rounded className="product-imagecart"/>
                                             </Col>
                                             <Col md={3} className="product-name">
-                                                <Link to={`/products/item/${item.product}`} >{item.name}</Link>
+                                                <Link to={`/products/item/${item.product}`}>{item.name}</Link>
                                             </Col>
                                             <Col md={3} className="product-price">${item.price},00</Col>
                                             <Col md={2}>
