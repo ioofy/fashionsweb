@@ -1,4 +1,4 @@
-import { WISHLIST_ADD_ITEM } from "../constants/wishlistConstants";
+import { WISHLIST_ADD_ITEM, WISHLIST_REMOVE_ITEM } from "../constants/wishlistConstants";
 
 export const wishListReducer = (
     state = { wishListItems: [] },
@@ -22,6 +22,11 @@ export const wishListReducer = (
                     ...state,
                     wishListItems: [...state.wishListItems, item]
                 }
+            }
+        case WISHLIST_REMOVE_ITEM:
+            return {
+                ...state,
+                wishListItems: state.wishListItems.filter((x) => x.product !== action.payload),
             }
         default :
             return state    

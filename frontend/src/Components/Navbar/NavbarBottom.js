@@ -11,7 +11,8 @@ const NavbarBottom = () => {
     const cart = useSelector((state) => state.cart)
     const { cartItems } = cart
 
-
+    const wishList = useSelector((state) => state.wishList)
+    const { wishListItems } = wishList
 
     return (
       <div className="wrapper">
@@ -24,26 +25,29 @@ const NavbarBottom = () => {
             </div>
 
             <div className="tab teal">
-                <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="secondary" showZero>
+                <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary" showZero>
                   <NavLink exact to='/cart' activeClassName="active-link">
                     <FiShoppingBag/>
                   <p className='lng'>Cart</p>
                   </NavLink>
                 </Badge>
-            </div>       
-  
+            </div> 
+
             <div className="tab red">
-              <NavLink exact to='/wishlist' activeClassName="active-link">
-                  <FiHeart/>
-              </NavLink>
-              <p className="lng">Wishlist</p>
-            </div>
+                <Badge badgeContent={wishListItems.length} color="secondary">
+                  <NavLink exact to='/wishlist' activeClassName="active-link">
+                    <FiHeart/>
+                  <p className='lng'>Wish</p>
+                  </NavLink>
+                </Badge>
+            </div>      
+  
 
             <div className="tab orange">
             {userInfo ?
             <>
               <NavLink exact to='/profile' activeClassName="active-link">
-              <FiUser/>
+                <FiUser/>
               <p className="lng">Profile</p> 
               </NavLink>
             </>

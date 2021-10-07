@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Rating from '../Stuff/Rating'
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import ScrollToTop from '../Stuff/ScrollToTop'
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import Footer from "../Footer/Footer";
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 import NewsLetter from "../Stuff/NewsLetter";
@@ -16,7 +17,7 @@ import { Col, Form, Row, ListGroup  } from "react-bootstrap";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import '../../style/index.css'
 import Meta from "../Stuff/Meta";
-import { FiHeart } from "react-icons/fi";
+import { IoMdHeart } from "react-icons/io"
 
 const Container = styled.div`
   display: flex;
@@ -220,8 +221,7 @@ const ButtonCart = styled.button`
   width: 10rem;
   height: 2.5rem;
   margin-top: 15px;
-  position: absolute;
-  display: flex;
+  font-weight: bold;
   text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
   align-items: center;
@@ -230,6 +230,37 @@ const ButtonCart = styled.button`
   border-radius: 5px;
   background: orange;
   box-shadow: 5px 5px #5E454B;
+`
+
+const ButtonWishlist = styled.button`
+  padding: 8px;
+  width: 12.9rem;
+  height: 2.5rem;
+  margin-top: 15px;
+  font-weight: bold;
+  margin-left: 20px;
+  display: flex;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: orange;
+  box-shadow: 5px 5px #5E454B;
+
+  @media screen and (max-width: 884px){
+    margin-left: 0px !important;
+  }
+`
+
+const WrapperButton = styled.div`
+  display: flex;
+
+  @media screen and (max-width: 884px){
+    flex-direction: column;
+  }
 `
 
 const Testimonials = styled.section`
@@ -339,6 +370,13 @@ const SubmitButton = styled.button`
   box-shadow: 5px 5px teal;
   margin-bottom: 10px;
 `
+const WrapperIcon = styled.div`
+
+`
+
+const Wrapperr = styled.div`
+
+`
 
 const Icon = styled.div`
 
@@ -346,20 +384,28 @@ const Icon = styled.div`
     color: #FF3D68;
     top: 0;
     bottom: 0;
+    background-color: #fff;
+    height: 45px;
+    border-radius: 50px;
+    width: 45px;
+    text-align: center;
     margin-top: 65px;
     margin-left: -10px;
     position: absolute;
-    font-size: 2.5rem;
-    cursor: pointer;
+    font-size: 2rem;
 
     @media screen and (max-width: 884px){
-      font-size: 2rem;
+      font-size: 1.9rem;
       margin-top: 55px;
       margin-left: -15px;
+      width: 42px;
+      height: 42px;
     }
     @media screen and (max-width: 280px){
       font-size: 1.8rem;
       margin-top: 55px;
+      height: 40px;
+      width: 40px;
       margin-left: -18px;
     }
 `
@@ -374,9 +420,23 @@ const ProductPage = ({ history, match }) => {
   const [comment, setComment] = useState('');
   const [message, setMessage] = useState(null)
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(() => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: '#111',
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: '#111',
+    },
+  }));
+
   const dispatch = useDispatch();
   const productDetails = useSelector(state => state.productDetails);
   const { loading, error, product } = productDetails
+
+  const wishList = useSelector((state) => state.wishList)
+  const { wishListItems } = wishList
 
   const productReviewCreate = useSelector(state => state.productReviewCreate);
   const { success:successProductReview, error:errorProductReview } = productReviewCreate
@@ -434,12 +494,21 @@ const ProductPage = ({ history, match }) => {
           </ButtonBack>
         </Link>
             <Wrapper>
-                  <ImgContainer>
-                    <Image src={product.image} />
-                    <Icon>
-                      <FiHeart style={{color: '#FF6B6B'}} onClick={AddToWishList}/>
-                    </Icon>
-                  </ImgContainer>
+                <ImgContainer>
+                  <Image src={product.image} />
+                  {wishListItems.map(wishlist => (
+                    <WrapperIcon key={wishlist.product}>
+                      {wishlist.product === product._id &&
+                      <BootstrapTooltip title="You added this into wishlist">
+                        <Icon>
+                            <IoMdHeart style={{color: '#FF6B6B'}}/>
+                        </Icon>
+                      </BootstrapTooltip>
+                      }               
+                    </WrapperIcon>
+                  ))}
+
+                </ImgContainer>
                   <InfoContainer>
                     <Title>{product.name}</Title>
                     <Rating value={product.rating} text={`${product.numReviews} reviews`} color='#FFB344' fontSize='13px' marginBottom='10px'/>
@@ -494,11 +563,20 @@ const ProductPage = ({ history, match }) => {
                         <FilterColor color="gray" id="gray"/>
                         <FilterColor color="#F7D59C" id="charcoal" />
                     </Filter>
+                    
+                      <WrapperButton>
+                        <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={AddToCart}> 
+                            <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
+                            ADD TO BAG
+                        </ButtonCart>
 
-                      <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={AddToCart}> 
-                          <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
-                          ADD TO BAG
-                      </ButtonCart>
+                        <Wrapperr>
+                          <ButtonWishlist style={{zIndex: '2'}} onClick={AddToWishList}>
+                            <IoMdHeart style={{ marginRight: '6px', fontSize: '21px', marginTop: '-3px', color: 'red'}} />
+                              ADD TO WISHLIST
+                          </ButtonWishlist>                     
+                        </Wrapperr>                  
+                      </WrapperButton>
                   </InfoContainer>
             </Wrapper>
 

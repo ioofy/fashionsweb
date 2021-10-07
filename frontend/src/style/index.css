@@ -17,8 +17,17 @@
   font-weight: bold;
 }
 
+@font-face{
+  font-family: 'Metropolis';
+  src: local('Metropolis'),
+      url('Metropolis.otf') format('opentype');
+  font-style: normal;
+  font-weight: bold;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 
 
 html,

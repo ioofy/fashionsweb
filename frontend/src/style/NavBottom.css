@@ -49,11 +49,6 @@ a{
     color: #111;
 }
 
-.differentp{
-    font-weight: bold;
-    color: #111;
-}
-
 .tab.purple .active-link svg, .tab.purple .active-link .lng{
     color: rgba(91, 55, 183, 1)
 }

@@ -1,0 +1,124 @@
+.blog-container h1{
+    font-family: 'Metropolis';
+    font-size: 3.5rem;
+}
+
+.blog-container p{
+    font-family: 'Inter';
+    font-size: 1.4rem;
+    margin-top: -5px;
+}
+
+.blog-container span{
+    font-size: 1rem;
+    font-family: 'Inter';
+}
+
+.content-blog img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.content-blog{
+    display: flex;
+    flex-wrap: wrap;
+    border: none;
+    outline: none;
+}
+
+.content-description{
+    border: none;
+    outline: none;
+}
+
+.devs-social-media{
+    border: none;
+    outline: none;
+}
+
+.blog-container .list-group-item{
+    background-color: #FEFBF3;
+}
+
+.blog-container .developer-wrapper-content{
+    margin-bottom: 50px;
+}
+
+.content-blog p {
+    margin-left: 15px;
+    font-family: 'Inter';
+    font-weight: bold;
+    margin-top: 1px;
+    font-size: 20px;
+}
+
+.content-blog span{
+    align-items: center;
+}
+
+.developer-content-description p{
+    font-family: 'FavFont';
+    font-weight: bold;
+    text-align: justify;
+}
+
+.developer-socmed .icon{
+    font-size: 1.5rem;
+    margin-top: -25px;
+}
+
+.developer-socmed .icon i{
+    padding: 0 5px;
+}
+
+.developer-socmed .icon i:hover{
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+}
+
+.developer-socmed .icon .fa-github:hover{
+    color: #27272E;
+}
+
+.developer-socmed .icon .fa-facebook:hover{
+    color: #0F52BA;
+}
+
+.developer-socmed .icon .fa-linkedin:hover{
+    color: #2867B2;
+}
+
+.topic-widget .widget h3{
+    font-family: 'Metropolis';
+    font-size: 2rem;
+}
+
+.topic-widget{
+    margin-bottom: 30px;
+}
+
+
+@media screen and (max-width: 884px){
+    .blog-container h1{
+        font-size: 3rem;
+    }
+
+    .topic-widget .widget h3{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 414px){
+    .blog-container h1{
+        font-size: 2.5rem;
+    }
+
+    .developer-content-description p{
+        text-align: left;
+    }
+
+    .blog-container p{
+        font-size: 1.2rem;
+    }
+}

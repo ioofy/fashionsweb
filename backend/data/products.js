@@ -2,7 +2,7 @@ const products = [
 
     {
         image: "/prod_img/amatsujacket.png",
-        name: "Amatsu Hoodie",
+        name: "Amatsu XLV Hoodie",
         description: 
         "As this item is manufactured in multiple countries, the country of manufacture of the product you receive may differ from the origin. Also stylish and Elegant for you.",
         price: 200,

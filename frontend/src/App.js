@@ -15,6 +15,7 @@ import ProductDashboard from './Components/pages/ProductDashboard';
 import ProductEdit from './Components/pages/ProductEdit';
 import OrderList from './Components/pages/OrderList';
 import Wishlist from './Components/pages/Wishlist';
+import Blog from './Components/pages/Blog';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/admin/user/:id/edit' component={UserEdit}/>
         <Route path='/admin/product/:id/edit' component={ProductEdit}/>
         <Route path='/' component={Home} exact/>
+        <Route path='/blog/development' component={Blog}/>
     </Router>
   )
 }

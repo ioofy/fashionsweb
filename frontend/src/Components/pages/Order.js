@@ -140,41 +140,41 @@ const Order = ({ match }) => {
                                 <Col md={5}>
                                 <Card>
                                     <ListGroup variant='flush'>
-                                    <ListGroup.Item className="group-checkout">
-                                        <h2 style={{fontWeight: 'bold'}} >Order Summary</h2>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="group-checkout">
-                                        <Row style={{fontWeight: 'bold'}}>
-                                        <Col className="product-pricepay">Items</Col>
-                                        <Col className="product-pricepay">${order.itemsPrice},00</Col>
-                                        </Row>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="group-checkout">
-                                        <Row style={{fontWeight: 'bold'}}>
-                                        <Col className="product-pricepay">Shipping</Col>
-                                        <Col className="product-pricepay">${order.shippingPrice},00</Col>
-                                        </Row>
-                                    </ListGroup.Item>
-                                    <ListGroup.Item className="group-checkout">
-                                        <Row style={{fontWeight: 'bold'}}>
-                                        <Col className="product-pricepay">Total</Col>
-                                        <Col className="product-pricepay">${order.totalPrice},00</Col>
-                                        </Row>
-                                    </ListGroup.Item>
-                                    {!order.isPaid && (
                                         <ListGroup.Item className="group-checkout">
-                                        {loadingPay && <Loader margin='0px auto' />}
-                                        {!sdkReady ? (
-                                            <Loader />
-                                        ) : (
-                                            <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                            />
-                                        )}
+                                            <h2 style={{fontWeight: 'bold'}} >Order Summary</h2>
                                         </ListGroup.Item>
-                                    )}
-                                </ListGroup>
+                                        <ListGroup.Item className="group-checkout">
+                                            <Row style={{fontWeight: 'bold'}}>
+                                            <Col className="product-pricepay">Items</Col>
+                                            <Col className="product-pricepay">${order.itemsPrice},00</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item className="group-checkout">
+                                            <Row style={{fontWeight: 'bold'}}>
+                                            <Col className="product-pricepay">Shipping</Col>
+                                            <Col className="product-pricepay">${order.shippingPrice},00</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item className="group-checkout">
+                                            <Row style={{fontWeight: 'bold'}}>
+                                            <Col className="product-pricepay">Total</Col>
+                                            <Col className="product-pricepay">${order.totalPrice},00</Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        {!order.isPaid && (
+                                            <ListGroup.Item className="group-checkout">
+                                            {loadingPay && <Loader margin='0px auto' />}
+                                            {!sdkReady ? (
+                                                <Loader />
+                                            ) : (
+                                                <PayPalButton
+                                                amount={order.totalPrice}
+                                                onSuccess={successPaymentHandler}
+                                                />
+                                            )}
+                                            </ListGroup.Item>
+                                        )}
+                                    </ListGroup>
                                 </Card>
                                 </Col>
                             </Row>

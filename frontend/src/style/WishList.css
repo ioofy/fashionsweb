@@ -1,0 +1,69 @@
+.small-container{
+    display: flex;
+    max-width: 1290px;
+    margin: 50px auto;
+}
+
+.cart-page{
+    margin-top: 40px;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td .cart-info{
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono';
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+thead th{
+    text-align: left;
+    padding: 10px 20px;
+    color: #111;
+    font-size: 22px;
+    font-weight: bold;
+    background-color: orange;
+}
+
+td{
+    padding: 10px 10px;
+}
+
+td p{
+    font-size: 20px;
+    margin-top: 5px;
+    color: #111;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td span{
+    font-size: 17px;
+    color: #111;
+}
+
+td img{
+    background-color: #C5DCDD;
+    border-radius: 20px;
+    width: 210px;
+    height: 220px;
+    margin-right: 10px;
+}
+
+.image-container{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 600px){
+    td img{
+        width: 245px;
+        height: 260px;
+    }
+}

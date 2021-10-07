@@ -16,6 +16,9 @@ const Navbar = () => {
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
 
+  const wishList = useSelector((state) => state.wishList)
+  const { wishListItems } = wishList
+
   const changeNav = () => {
       if(window.scrollY >= 70){
             setScroll(true);
@@ -48,16 +51,18 @@ const Navbar = () => {
                   <NavLinks>
                       <IoLanguage />
                     </NavLinks>
-              
+
                   <LinkContainer to='/wishlist'>
                     <NavLinks>
-                      <FiHeart />
+                      <Badge badgeContent={wishListItems.length} color="secondary">
+                        <FiHeart />
+                      </Badge>
                     </NavLinks>
                   </LinkContainer>
 
                   <LinkContainer to='/cart'>
                     <NavLinks>
-                      <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="secondary" showZero>
+                      <Badge badgeContent={cartItems.reduce((acc, item) => acc + item.qty, 0 )} color="primary" showZero>
                         <LocalMallOutlinedIcon />
                       </Badge>
                     </NavLinks> 
