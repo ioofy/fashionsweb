@@ -48,7 +48,7 @@ const Cart = ({ match, location, history }) => {
     const productId = match.params.id
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
-    const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    const qty = location.search ? Number(location.search.split('qty=')[1]) : 1
     const dispatch = useDispatch()
     const cart = useSelector((state) => state.cart)
     const { cartItems } = cart

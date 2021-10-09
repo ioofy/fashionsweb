@@ -17,7 +17,8 @@ import { Col, Form, Row, ListGroup  } from "react-bootstrap";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../../constants/productConstants";
 import '../../style/index.css'
 import Meta from "../Stuff/Meta";
-import { IoMdHeart } from "react-icons/io"
+import { RiHeartAddFill } from "react-icons/ri"
+import {IoMdHeart} from "react-icons/io"
 
 const Container = styled.div`
   display: flex;
@@ -565,18 +566,19 @@ const ProductPage = ({ history, match }) => {
                     </Filter>
                     
                       <WrapperButton>
-                        <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={AddToCart}> 
-                            <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
-                            ADD TO BAG
-                        </ButtonCart>
+                      <ButtonCart type='button' disabled={product.countInStock === 0} style={product.countInStock >= 1 ? {cursor: "pointer"} : {cursor: "auto"}} onClick={AddToCart}> 
+                          <LocalMallOutlinedIcon style={{ marginRight: '6px', fontSize: '22px', marginTop: '-3px'}} /> 
+                          ADD TO BAG
+                      </ButtonCart>
 
-                        <Wrapperr>
-                          <ButtonWishlist style={{zIndex: '2'}} onClick={AddToWishList}>
-                            <IoMdHeart style={{ marginRight: '6px', fontSize: '21px', marginTop: '-3px', color: 'red'}} />
-                              ADD TO WISHLIST
-                          </ButtonWishlist>                     
-                        </Wrapperr>                  
-                      </WrapperButton>
+                    <Wrapperr>
+                     <ButtonWishlist style={{zIndex: '2'}} onClick={AddToWishList}>
+                       <RiHeartAddFill style={{ marginRight: '6px', fontSize: '21px', marginTop: '-3px', color: 'red'}} />
+                         ADD TO WISHLIST
+                     </ButtonWishlist>   
+                    </Wrapperr>  
+                    </WrapperButton>
+
                   </InfoContainer>
             </Wrapper>
 

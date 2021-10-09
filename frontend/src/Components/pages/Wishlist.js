@@ -79,45 +79,48 @@ const Wishlist = ({ match }) => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Product WishList</th>
+                            <th>({wishListItems.length}) Product WishList</th>
+                            <th></th>
                         </tr>
                     </thead>
+                    
                     <tbody>
                     <tr>
+                        
                         <td>
-                            {wishListItems.map(item => (
-                            <div className="cart-info" key={item.product}>
-                            <div className="image-container">
-                                <img src={item.image} alt={item.name}/>
-                                <Icon onClick={() => removeWishListHandler(item.product)}>
-                                    <IoMdHeart style={{color: 'red'}}/>
-                                </Icon>
+                        {wishListItems.map(item => (
+                        <div className="cart-info" key={item.product}>
+                        <div className="image-container">
+                            <img src={item.image} alt={item.name}/>
+                            <Icon onClick={() => removeWishListHandler(item.product)}>
+                                <IoMdHeart style={{color: 'red'}}/>
+                            </Icon>
+                        </div>
+                            <div>
+                                <p>{item.name}</p>
+                                <span style={{fontFamily: 'Inter', fontSize:'16px'}}>Category: {item.category}</span> <br />
+                                <span style={{fontFamily: 'Inter', fontSize:'16px'}}>Brand: {item.brand}</span><br />
+                                <span style={{fontFamily: 'FavFont'}}><Rating value={item.rating} text={`${item.numReviews} reviews`}color='#FFB344' fontSize='15px' marginBottom='10px' marginTop='5px'/></span>
+                                <span style={{fontWeight: 'bold'}}>${item.price},00</span><br />
+                                <span>
+                                  <Link to={`/products/item/${item.product}`}>
+                                    <Details>
+                                    <BiSearchAlt
+                                    style={{
+                                        marginRight: "6px",
+                                        fontSize: "22px",
+                                        marginTop: "-3px",
+                                        marginLeft: "-4px",
+                                    }}
+                                    />
+                                    DETAILS
+                                    </Details>
+                                   </Link>
+                                </span>
                             </div>
-                                <div>
-                                    <p>{item.name}</p>
-                                    <span style={{fontFamily: 'Inter', fontSize:'16px'}}>Category: {item.category}</span> <br />
-                                    <span style={{fontFamily: 'Inter', fontSize:'16px'}}>Brand: {item.brand}</span><br />
-                                    <span style={{fontFamily: 'FavFont'}}><Rating value={item.rating} text={`${item.numReviews} reviews`}color='#FFB344' fontSize='15px' marginBottom='10px' marginTop='5px'/></span>
-                                    <span style={{fontWeight: 'bold'}}>${item.price},00</span><br />
-                                    <span>
-                                      <Link to={`/products/item/${item.product}`}>
-                                        <Details>
-                                        <BiSearchAlt
-                                        style={{
-                                            marginRight: "6px",
-                                            fontSize: "22px",
-                                            marginTop: "-3px",
-                                            marginLeft: "-4px",
-                                        }}
-                                        />
-                                        DETAILS
-                                        </Details>
-                                       </Link>
-                                    </span>
-                                </div>
-                            </div>
-                            ))}
-                        </td>
+                        </div>
+                        ))}                                    
+                    </td>
                     </tr>
                     </tbody>
                 </table>
